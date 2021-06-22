@@ -37,6 +37,8 @@ if (!isProduction) {
       },
     })
   );
+  
+app.use(routes);
 
   // Catch unhandled requests and forward to error handler.
 app.use((_req, _res, next) => {
@@ -70,6 +72,5 @@ app.use((err, _req, res, _next) => {
   });
 
   
-app.use(routes);
 
 module.exports = app;
