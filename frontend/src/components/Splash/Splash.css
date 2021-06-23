@@ -1,0 +1,40 @@
+.splash-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.splash-logo {
+    width: 28vw;
+    box-sizing: border-box;
+    margin-top: 10vh;
+}
+
+.splash-text {
+    font-size: 1.5vw;
+    width: 40vw;
+    box-sizing: border-box;
+    margin-top: 4vh;
+}
+
+.splash-links-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 20vh;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+.splash-links {
+    color: aliceblue;
+    text-decoration: none;
+    font-size: 3vw; 
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+.splash-links:visited {
+    color: aliceblue;
+}
