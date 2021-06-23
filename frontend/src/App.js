@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
+import Splash from "./components/Splash"
 import * as sessionActions from "./store/session";
 
 function App() {
@@ -14,6 +15,9 @@ function App() {
 
   return isLoaded && (
     <Switch>
+      <Route path='/' exact>
+        <Splash />
+      </Route>
       <Route path="/login">
         <LoginFormPage />
       </Route>
