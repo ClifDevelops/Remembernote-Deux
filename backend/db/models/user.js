@@ -87,7 +87,6 @@ module.exports = (sequelize, DataTypes) => {
 
   User.associate = function(models) {
     User.hasMany(models.Memory, { foreignKey: "userId" });
-    User.belongsToMany(models.Tag, {through: 'UserTags'})
   };
   return User;
 };

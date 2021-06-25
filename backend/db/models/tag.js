@@ -7,8 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   Tag.associate = function(models) {
-    Tag.belongsToMany(models.Memory, { through: 'MemoryTags' });
-    Tag.belongsToMany(models.Tag, { through: 'UserTags' });
+    Tag.hasMany(models.MemoryTag, { foreignKey: 'tagId' });
   };
   return Tag;
 };

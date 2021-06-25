@@ -32,7 +32,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Memory.associate = function(models) {
     Memory.belongsTo(models.User, { foreignKey: "userId" });
-    Memory.belongsToMany(models.Tag, { through: 'MemoryTags' });
+    Memory.hasMany(models.MemoryTag, { foreignKey: 'memoryId'})
+    
   };
   return Memory;
 };
