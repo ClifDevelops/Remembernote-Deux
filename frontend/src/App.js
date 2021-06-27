@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
+import MemoryForm from "./components/MemoryForm";
 import Splash from "./components/Splash"
 import * as sessionActions from "./store/session";
 
@@ -23,6 +24,9 @@ function App() {
       </Route>
       <Route path="/signup">
         <SignupFormPage />
+      </Route>
+      <Route path='/memoryForm'>
+        <MemoryForm />>
       </Route>
     </Switch>
   );
