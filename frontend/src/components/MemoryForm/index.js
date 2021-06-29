@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import "./MemoryForm.css";
 import {createMemory} from "../../store/memories"
+import RichTextEditor from "../RichTextEditor";
 
 
 
