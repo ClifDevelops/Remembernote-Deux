@@ -1,0 +1,13 @@
+.CKEditor-container {
+    width: 500px;
+    height: 200px;
+}
+
+.ck-editor__editable_inline {
+    min-height: 400px;
+    color: black;
+}
+
+.memory-form-button {
+    margin-top: 300px;
+}

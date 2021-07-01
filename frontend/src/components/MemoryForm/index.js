@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import "./MemoryForm.css";
 import {createMemory} from "../../store/memories"
 
@@ -10,7 +12,7 @@ const MemoryForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const userId = useSelector((state) => state.session.user.id);
-    console.log(userId)
+    
 
     const [title, setTitle] = useState("");
     const [dateOfMemory, setDateOfMemory] = useState("");
@@ -90,13 +92,23 @@ const MemoryForm = () => {
             onChange={updateMemoryRating}
             className="memory-input"
           />
-          <textarea
+          <div className='CKEditor-container'>
+            <CKEditor
+                editor={ClassicEditor}
+                data={body}
+                onChange={(e, editor) => {
+                    const data = editor.getData();
+                    setBody(data);
+                }}
+                />
+          </div>
+          {/* <textarea
             form="memory-form"
             placeholder="Record your memory!"
             className="memory-form-textbox"
             value={body}
             onChange={updateBody}
-          />
+          /> */}
           <button type="submit" className="memory-form-button">Store your memory!</button>
         </form>
       </section>

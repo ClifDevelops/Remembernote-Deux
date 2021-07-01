@@ -64,5 +64,17 @@ const requireAuth = [
     },
 ];
 
+const getCurrentUserId = (req) => {
+  const { token } = req.cookies;
+  return jwt.verify(token, secret, null, async (err, jwtPayload) => {
+    if (err) {
+      return false;
+    }
+    const { id } = jwtPayload.data;
 
-module.exports = { setTokenCookie, restoreUser, requireAuth };
+    return id;
+  });
+};
+
+
+module.exports = { setTokenCookie, restoreUser, requireAuth, getCurrentUserId };
