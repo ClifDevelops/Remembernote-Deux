@@ -1,27 +1,24 @@
 .homepage-container {
     display: grid;
     grid-template-columns: 25% 75%;
+    min-height: 100vh;
+    /* background-color: black; */
+}
+
+.homepage-sidebar {
+    grid-column: 1;
+    border-right: solid 2px aliceblue;
+    background-color: black;
 }
 
 .homepage-greeting {
-    grid-column: 1;
+    /* grid-column: 1; */
+    font-size: 30px;
 }
 
 .memory-list-container {
     grid-column: 2;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
-.single-memory-container{
-    font-size: 18px;
-    width: 140px;
-    box-sizing: border-box;
-    margin: 20px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    border: 2.3px solid aliceblue;
-}
