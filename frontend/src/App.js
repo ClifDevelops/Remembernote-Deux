@@ -5,9 +5,6 @@ import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import MemoryForm from "./components/MemoryForm";
 import Splash from "./components/Splash"
-import RichTextEditor from "./components/RichTextEditor";
-import EditorTwo from "./components/EditorTwo";
-import Editor from "./components/CKEditor";
 import * as sessionActions from "./store/session";
 import Homepage from "./components/Homepage";
 
@@ -34,9 +31,6 @@ function App() {
       </Route>
       <Route path="/homepage">
         <Homepage isLoaded={isLoaded}/>
-      </Route>
-      <Route path='/editor'>
-        <Editor />
       </Route>
     </Switch>
   );
