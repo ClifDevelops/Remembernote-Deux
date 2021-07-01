@@ -23,24 +23,22 @@ const Homepage = ({isLoaded}) => {
     
         return (
           <div className="homepage-container">
-            <div> Hello {sessionUser.username}! Go ahead and <NavLink to='memoryForm'>write down another memory!</NavLink></div>
+            <div className='homepage-greeting'> Hello {sessionUser.username}! Go ahead and <NavLink to='memoryForm'>write down another memory!</NavLink></div>
 
             <div className="memory-list-container">
-      {Object.values(memories).map((memory) => {
-        return (
-          <div className="single-memory-container">
-            <h2 className="memory-title">{memory?.title}</h2>
-            <div>{memory?.dateOfMemory}</div>
-            <div>{memory?.memoryRating}</div>
-            <div>{ReactHtmlParser(memory?.body)}</div>
+              {Object.values(memories).map((memory) => {
+                return (
+                  <div className="single-memory-container">
+                    <h2 className="memory-title">{memory?.title}</h2>
+                    <div>{memory?.dateOfMemory}</div>
+                    <div>{memory?.memoryRating}</div>
+                    <div>{ReactHtmlParser(memory?.body)}</div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         );
-      })}
-      
-    
-    </div>
-          </div>
-        );
-    }
+}
     
     export default Homepage;
