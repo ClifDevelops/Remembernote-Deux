@@ -24,5 +24,14 @@
 
 .greeting-link {
     color: aliceblue;
-    
+}
+
+.memories-search-input {
+    font-size: 20px;
+    box-sizing: border-box;
+    margin: 65px;
+    border:2.5px solid darkgray
+}
+.memories-search-input:focus {
+    outline: 0;
 }
