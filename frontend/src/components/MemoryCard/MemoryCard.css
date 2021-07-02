@@ -1,0 +1,25 @@
+.single-memory-container{
+    font-size: 18px;
+    width: 200px;
+    height: 300px;
+    box-sizing: border-box;
+    margin: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 2.3px solid aliceblue;
+    border-radius: 4px;
+}
+
+.memory-box-link {
+    color: aliceblue;
+    text-decoration: none;
+}
+.memory-box-link:hover {
+    text-decoration: underline;
+}
+.memory-box-link:visited {
+    color: aliceblue;
+}

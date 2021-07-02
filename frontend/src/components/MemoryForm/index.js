@@ -54,11 +54,12 @@ const MemoryForm = () => {
       }
 
         
-    
+
       
     return (
+      <>
+      <button className="to-home-memory-button" onClick={headHome}>Head Back Home</button>
       <section className="memory-form-container">
-        <button className="to-home-memory-button" onClick={headHome}>Head Back Home</button>
         <form onSubmit={handleSubmit} id="memory-form" className="memory-form">
           <input
             type="text"
@@ -95,6 +96,9 @@ const MemoryForm = () => {
           <div className='CKEditor-container'>
             <CKEditor
                 editor={ClassicEditor}
+                config={{
+                  toolbar: ['heading', '|', 'bold', 'italic', '|', 'undo', 'redo', '|', 'bulletedList', 'numberedList', ],
+                }}
                 data={body}
                 onChange={(e, editor) => {
                     const data = editor.getData();
@@ -102,16 +106,10 @@ const MemoryForm = () => {
                 }}
                 />
           </div>
-          {/* <textarea
-            form="memory-form"
-            placeholder="Record your memory!"
-            className="memory-form-textbox"
-            value={body}
-            onChange={updateBody}
-          /> */}
           <button type="submit" className="memory-form-button">Store your memory!</button>
         </form>
       </section>
+      </>
     );
 
 }
