@@ -10,6 +10,7 @@ const Homepage = ({isLoaded}) => {
     const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
     const memories = useSelector(state => state?.memories);
+    const [searchTerm, setSearchTerm] = useState("");
     
     useEffect(() => {
       dispatch(setMemories())
@@ -22,10 +23,31 @@ const Homepage = ({isLoaded}) => {
         return (
           <div className="homepage-container">
             <div className='homepage-sidebar'>
-              <div className='homepage-greeting'> Hello {sessionUser.username}! Go ahead and <NavLink to='memoryForm'>record another memory!</NavLink></div>
+              <div className='homepage-greeting'> Hello {sessionUser.username}! 
+              Go ahead and <NavLink className='greeting-link' to='memoryForm'>record another memory!</NavLink></div>
+              <input
+            className='memories-search-input'
+            type="text"
+            placeholder="Search your memories"
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+            }}
+          />
             </div>
+
             <div className="memory-list-container">
-              {Object.values(memories).map((memory) => {
+              {Object.values(memories)
+              .filter((memory) => {
+              if (searchTerm === "") {
+                return memory;
+              } else if (
+                memory?.title
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase()) 
+              ) {
+                return memory;
+              }
+            }).map((memory) => {
                 return (
                   <MemoryCard memory={memory} />
                 );

@@ -1,6 +1,11 @@
+.memory-form-container {
+    margin-left: 200px;
+    margin-top: 50px;
+}
+
 .CKEditor-container {
-    width: 500px;
-    height: 200px;
+    width: 800px;
+    /* height: 200px; */
 }
 
 .ck-editor__editable_inline {
@@ -9,5 +14,9 @@
 }
 
 .memory-form-button {
-    margin-top: 300px;
+    /* margin-top: 300px; */
+}
+
+.memory-input {
+    font-size: 16px;
 }
