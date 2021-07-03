@@ -62,7 +62,22 @@ export const createMemory = data => async dispatch => {
     }
 }
 
+export const updateMemory = data => async dispatch => {
+    console.log(data);
+    const response = await csrfFetch(`/api/memories/edit`, {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    });
 
+    if (response.ok) {
+        const memory = await response.json();
+        dispatch(addMemory(memory));
+        return memory;
+    }
+}
 
 
 const initialState = {};

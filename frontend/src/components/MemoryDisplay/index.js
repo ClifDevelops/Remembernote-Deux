@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, NavLink } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
 import "./MemoryDisplay.css"
 
@@ -24,6 +24,7 @@ const MemoryDisplay = () => {
         <button className="to-home-button" onClick={headHome}>
           Head Back Home
         </button>
+        <NavLink to={`/memories/${memoryId}/edit/`}>Edit this memory</NavLink>
         <div className="memory-display-title">{memory?.title}</div>
         <div className="memory-display-date">{memory?.dateOfMemory}</div>
         <div className="memory-display-location">{memory?.location}</div>
