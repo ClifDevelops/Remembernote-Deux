@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import MemoryForm from "./components/MemoryForm";
+import EditMemoryForm from "./components/EditMemoryForm";
 import MemoryDisplay from "./components/MemoryDisplay";
 import Splash from "./components/Splash"
 import * as sessionActions from "./store/session";
@@ -31,10 +32,13 @@ function App() {
         <MemoryForm />
       </Route>
       <Route path="/homepage">
-        <Homepage isLoaded={isLoaded}/>
+        <Homepage />
       </Route>
-      <Route path="/memories/:memoryId">
+      <Route path="/memories/:memoryId" exact>
         <MemoryDisplay />
+      </Route>
+      <Route path="/memories/:memoryId/edit" exact>
+        <EditMemoryForm />
       </Route>
     </Switch>
   );

@@ -72,5 +72,27 @@ router.post(
     })
   )
 
+  router.post(
+    "/edit",
+    requireAuth,
+    validateMemory,
+    asyncHandler(async function (req, res) {
+      // console.log(req.cookies.user);
+      // const userId = parseInt(req.cookies.user, 10);
+      const {title, dateOfMemory, location, memoryRating, body, userId, memoryId} = req.body;
+      const parsedId = parseInt(memoryId, 10);
+      const memoryToUpdate = await Memory.findByPk(parsedId);
+      await memoryToUpdate.update({
+        title,
+        dateOfMemory,
+        location,
+        memoryRating,
+        body,
+        userId
+      });
+      res.json(memoryToUpdate);
+  
+    })
+  )
 
 module.exports = router;

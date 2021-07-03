@@ -6,7 +6,7 @@ import MemoryCard from '../MemoryCard';
 import { setMemories } from "../../store/memories";
 import './Homepage.css';
 
-const Homepage = ({isLoaded}) => {
+const Homepage = () => {
     const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
     const memories = useSelector(state => state?.memories);
