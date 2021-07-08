@@ -35,3 +35,18 @@
 .memories-search-input:focus {
     outline: 0;
 }
+
+.logout-button-container {
+    position: relative;
+    bottom: -60vh;
+    left: 5vw;
+}
+.logout-button {
+    width: 15vw;
+    height: 5vh;
+    font-size: 3vh;
+    font-family: inherit;
+    background-color: aliceblue;
+    border: none;
+    
+}

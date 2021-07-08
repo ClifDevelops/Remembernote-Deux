@@ -3,7 +3,8 @@ import { useSelector, useDispatch  } from 'react-redux';
 import { useParams, Route, Redirect, NavLink } from "react-router-dom";
 import ReactHtmlParser from 'react-html-parser';
 import MemoryCard from '../MemoryCard';
-import { setMemories } from "../../store/memories";
+import { setMemories, logoutMemories } from "../../store/memories";
+import { logoutSession } from '../../store/session';
 import './Homepage.css';
 
 const Homepage = () => {
@@ -16,6 +17,11 @@ const Homepage = () => {
       dispatch(setMemories())
     }, [dispatch])
     
+    const onLogout = async () => {
+      await dispatch(logoutMemories());
+      await dispatch(logoutSession());
+    }
+
     if (!sessionUser){
       return <Redirect to="/" />;
     } 
@@ -33,6 +39,7 @@ const Homepage = () => {
               setSearchTerm(e.target.value);
             }}
           />
+          <div className='logout-button-container'><button className='logout-button' onClick={onLogout}>Logout</button></div>
             </div>
 
             <div className="memory-list-container">
