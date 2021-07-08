@@ -5,18 +5,26 @@
 
 .CKEditor-container {
     width: 800px;
+    font-family: inherit;
     /* height: 200px; */
 }
 
 .ck-editor__editable_inline {
+    font-family: inherit;
     min-height: 400px;
     color: black;
 }
 
 .memory-form-button {
+    font-family: inherit;
     /* margin-top: 300px; */
 }
 
 .memory-input {
     font-size: 16px;
+    font-family: inherit;
+}
+
+.to-home-memory-button {
+    font-family: inherit;
 }

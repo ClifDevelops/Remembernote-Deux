@@ -23,7 +23,7 @@ const addMemory = (memory) => ({
     payload: memory,
 });
 
-const unset = () => {
+const logout = () => {
     return {
         type: UNSET_MEMORIES
     }
@@ -40,9 +40,8 @@ export const setMemories = () => async dispatch => {
     dispatch(load(memories));
 }
 
-export const unsetMemories = () => async (dispatch) => {
-  
-  dispatch(unset());
+export const logoutMemories = () => async (dispatch) => {
+  dispatch(logout());
 };
 
 export const createMemory = data => async dispatch => {
@@ -96,7 +95,6 @@ const memoriesReducer = (state = initialState, action) => {
             });
             return newState;
         case UNSET_MEMORIES:
-            newState.memories = {};
             return newState;
 
         
