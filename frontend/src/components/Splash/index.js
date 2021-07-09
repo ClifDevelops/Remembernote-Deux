@@ -30,7 +30,7 @@ const Splash = () => {
             <div className='splash-links-container'>
                 <NavLink className='splash-links' to='/login'>Login Here</NavLink>
                 <NavLink className='splash-links' to='/signup'>Signup Here</NavLink>
-                <button className='demo-login-button' onClick={demoLogin}>Demo Login</button>
+                <div><button className='demo-login-button' onClick={demoLogin}>Demo Login</button></div>
             </div>
             
             
