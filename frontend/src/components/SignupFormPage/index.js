@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, NavLink } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css';
 
@@ -15,6 +15,11 @@ function SignupFormPage() {
 
   if (sessionUser) return <Redirect to="/homepage" />;
 
+
+  const handleCancel = () => {
+    return <Redirect to='/' />
+  }
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
@@ -68,6 +73,7 @@ function SignupFormPage() {
           />
         
         <button type="submit" className='auth-button'>Sign Up</button>
+        <NavLink to='/' className='auth-form-cancel-link'>Cancel</NavLink>
       </form>
     </div>
   );
