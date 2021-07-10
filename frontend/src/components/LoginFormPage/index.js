@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink} from 'react-router-dom';
 import './LoginFormPage.css'
 
 function LoginFormPage() {
@@ -48,6 +48,7 @@ function LoginFormPage() {
             className='auth-form-input'
           />
         <button type="submit" className='auth-button'>Log In</button>
+        <NavLink to='/' className='auth-form-cancel-link'>Cancel</NavLink>
       </form>
     </div>
   );

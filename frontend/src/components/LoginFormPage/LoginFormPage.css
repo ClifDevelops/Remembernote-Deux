@@ -18,6 +18,9 @@
     font-size: 3.3vh;
     margin-top: 15px;
 }
+.auth-form-input:focus {
+    outline: 0;
+}
 
 .auth-button {
     width: 10vw;
@@ -30,4 +33,20 @@
     border-radius: 4px;
     font-family: inherit;
     font-size: 2vh;
+}
+.auth-button:hover {
+    background-color: rgb(19, 108, 187);
+}
+
+.auth-form-cancel-link {
+    color:aliceblue;
+    text-decoration: none;
+    margin-top: 10px;
+    font-size: 2vh;
+}
+.auth-form-cancel-link:hover {
+    text-decoration: underline;
+}
+.auth-form-cancel-link:visited {
+    color: aliceblue;
 }
