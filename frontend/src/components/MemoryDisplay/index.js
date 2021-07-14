@@ -31,18 +31,22 @@ const MemoryDisplay = () => {
 
     return (
       <div className="memory-display">
-        <button className="to-home-button" onClick={headHome}>
-          Head Back Home
-        </button>
-        <NavLink to={`/memories/${memoryId}/edit/`}>Edit this memory</NavLink>
-        <button className='tag-toggle-button' onClick={toggleForm}>Tag your memory</button>
-        <div className="memory-display-title">{memory?.title}</div>
-        <div className="memory-display-date">{memory?.dateOfMemory}</div>
-        <div className="memory-display-location">{memory?.location}</div>
-        <div className="memory-display-rating">
-          Memory Rating: {memory?.memoryRating}
+        <div className='memory-display-navigation'>
+          <button className="to-home-button" onClick={headHome}>
+            Head Back Home
+          </button>
+          <NavLink className='memory-edit-link' to={`/memories/${memoryId}/edit/`}>Edit this memory</NavLink>
+          <button className='tag-toggle-button' onClick={toggleForm}>Tag your memory</button>
         </div>
-        <div className="memory-display-body">{ReactHtmlParser(memory?.body)}</div>
+        <div className='memory-display-container'>
+          <div className="memory-display-title">{memory?.title}</div>
+          <div className="memory-display-date">{memory?.dateOfMemory}</div>
+          <div className="memory-display-location">{memory?.location}</div>
+          <div className="memory-display-rating">
+            Memory Rating: {memory?.memoryRating}
+          </div>
+          <div className="memory-display-body">{ReactHtmlParser(memory?.body)}</div>
+        </div>
       </div>
     );
 }
