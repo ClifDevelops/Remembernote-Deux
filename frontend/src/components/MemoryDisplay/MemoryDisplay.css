@@ -1,0 +1,44 @@
+.memory-display {
+    display: grid;
+    grid-template-columns: 25vw 60vw 15vw;
+    grid-template-rows: 10vh 90vh;
+}
+
+.memory-display-navigation {
+    grid-column: 1;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    box-sizing: border-box;
+    margin-left: 3vw;
+    margin-right: 3vw;
+    height: 20vh;
+
+}
+
+.memory-edit-link {
+    color: aliceblue;
+    font-size: 3vh;
+    text-decoration: none;
+}
+.memory-edit-link:visited {
+    color: aliceblue;
+}
+.memory-edit-link:hover {
+    text-decoration: underline;
+}
+
+.memory-display-container {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    margin-left: 4vw;
+}
+
+.memory-display-title {
+    font-size: 4vh;
+
+}
