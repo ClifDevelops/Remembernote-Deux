@@ -9,17 +9,19 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    border: 2.3px solid aliceblue;
+    border: 2.3px solid #5B7B7A;
     border-radius: 4px;
+    color: #0A1931;
+    overflow: hidden;
 }
 
 .memory-box-link {
-    color: aliceblue;
+    color: #0A1931;
     text-decoration: none;
 }
 .memory-box-link:hover {
     text-decoration: underline;
 }
 .memory-box-link:visited {
-    color: aliceblue;
+    color: #0A1931;
 }

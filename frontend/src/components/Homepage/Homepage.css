@@ -8,7 +8,7 @@
 .homepage-sidebar {
     grid-column: 1;
     border-right: solid 2px aliceblue;
-    background-color: black;
+    background-color: #0A1931;
 }
 
 .homepage-greeting {

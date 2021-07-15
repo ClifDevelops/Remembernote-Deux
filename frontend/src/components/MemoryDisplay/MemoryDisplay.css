@@ -14,16 +14,17 @@
     margin-left: 3vw;
     margin-right: 3vw;
     height: 20vh;
+    
 
 }
 
 .memory-edit-link {
-    color: aliceblue;
+    color: #0A1931;
     font-size: 3vh;
     text-decoration: none;
 }
 .memory-edit-link:visited {
-    color: aliceblue;
+    color: #0A1931;
 }
 .memory-edit-link:hover {
     text-decoration: underline;
@@ -36,9 +37,32 @@
     flex-direction: column;
     box-sizing: border-box;
     margin-left: 4vw;
+    height: 100vh;
+    color: #0A1931;
+    
 }
 
 .memory-display-title {
-    font-size: 4vh;
+    font-size: 5vh;
+    font-weight: 600;
+}
 
+.memory-display-date {
+    font-size: 2.3vh;
+    box-sizing: border-box;
+    margin-left: 3vw;
+}
+.memory-display-location {
+    font-size: 2.3vh;
+    box-sizing: border-box;
+    margin-left: 3vw;
+}
+.memory-display-rating {
+    font-size: 2.3vh;
+    box-sizing: border-box;
+    margin-left: 3vw;
+}
+
+.memory-display-body {
+    font-size: 2.6vh;
 }
