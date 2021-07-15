@@ -32,11 +32,11 @@ const MemoryDisplay = () => {
     return (
       <div className="memory-display">
         <div className='memory-display-navigation'>
-          <button className="to-home-button" onClick={headHome}>
+          <button className="memory-display-button" onClick={headHome}>
             Head Back Home
           </button>
           <NavLink className='memory-edit-link' to={`/memories/${memoryId}/edit/`}>Edit this memory</NavLink>
-          <button className='tag-toggle-button' onClick={toggleForm}>Tag your memory</button>
+          <button className='memory-display-button' onClick={toggleForm}>Tag your memory</button>
         </div>
         <div className='memory-display-container'>
           <div className="memory-display-title">{memory?.title}</div>

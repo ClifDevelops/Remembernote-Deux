@@ -8,7 +8,8 @@
 .homepage-sidebar {
     grid-column: 1;
     border-right: solid 2px aliceblue;
-    background-color: black;
+    background-color: #0A1931;
+    color: #A896CF;
 }
 
 .homepage-greeting {
@@ -23,7 +24,14 @@
 }
 
 .greeting-link {
-    color: aliceblue;
+    color: #A896CF;
+    text-decoration: none;
+}
+.greeting-link:visited {
+    color: #A896CF;
+}
+.greeting-link:hover {
+    text-decoration: underline;
 }
 
 .memories-search-input {
@@ -38,7 +46,7 @@
 
 .logout-button-container {
     position: relative;
-    bottom: -60vh;
+    bottom: -56vh;
     left: 5vw;
 }
 .logout-button {
@@ -46,7 +54,11 @@
     height: 5vh;
     font-size: 3vh;
     font-family: inherit;
-    background-color: aliceblue;
+    background-color: #FFF9EC;
+    color: #0A1931;
     border: none;
-    
+    border-radius: 5px;
+}
+.logout-button:hover {
+    border: 2px solid #A896CF;
 }
