@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: 25% 75%;
     min-height: 100vh;
+    width: 100%;
     /* background-color: black; */
 }
 
@@ -38,7 +39,8 @@
     font-size: 20px;
     box-sizing: border-box;
     margin: 65px;
-    border:2.5px solid darkgray
+    border:2.5px solid darkgray;
+    width: 15vw;
 }
 .memories-search-input:focus {
     outline: 0;

@@ -27,6 +27,10 @@ const MemoryDisplay = () => {
       console.log(tagFormToggle)
     }
 
+    const handleTagSubmit = () => {
+      console.log(tags)
+    }
+
     if(!memory) history.push("/homepage")
 
     return (
@@ -37,6 +41,15 @@ const MemoryDisplay = () => {
           </button>
           <NavLink className='memory-edit-link' to={`/memories/${memoryId}/edit/`}>Edit this memory</NavLink>
           <button className='memory-display-button' onClick={toggleForm}>Tag your memory</button>
+          {tagFormToggle ? (
+            <form onSubmit={handleTagSubmit} className="tag-form">
+              <input type="text" placeholder='tag here!' value={tags} onChange={setTags} className='tags-input'>
+
+              </input>
+            </form>
+          ) : (
+            ""
+          )}
         </div>
         <div className='memory-display-container'>
           <div className="memory-display-title">{memory?.title}</div>
