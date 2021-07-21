@@ -13,7 +13,7 @@ const MemoryDisplay = () => {
     const dispatch = useDispatch();
     const history= useHistory();
     const [tagFormToggle, setTagFormToggle] = useState(false)
-    const [tags, setTags] = useState([])
+    const [tag, setTag] = useState("")
     const headHome = () => {
       history.push("/homepage");
     };
@@ -24,11 +24,11 @@ const MemoryDisplay = () => {
       } else {
         setTagFormToggle(false)
       }
-      console.log(tagFormToggle)
+      
     }
 
     const handleTagSubmit = () => {
-      console.log(tags)
+      console.log(tag)
     }
 
     if(!memory) history.push("/homepage")
@@ -43,9 +43,9 @@ const MemoryDisplay = () => {
           <button className='memory-display-button' onClick={toggleForm}>Tag your memory</button>
           {tagFormToggle ? (
             <form onSubmit={handleTagSubmit} className="tag-form">
-              <input type="text" placeholder='tag here!' value={tags} onChange={setTags} className='tags-input'>
-
+              <input type="text" placeholder='Tag here!' value={tag} onChange={(e) =>setTag(e.target.value)} className='tags-input'>
               </input>
+              <button type="submit" className="tag-form-button">Commit your tag</button>
             </form>
           ) : (
             ""

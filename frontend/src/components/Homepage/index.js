@@ -56,7 +56,7 @@ const Homepage = () => {
               }
             }).map((memory) => {
                 return (
-                  <MemoryCard memory={memory} />
+                  <MemoryCard key={memory.id} memory={memory} />
                 );
               })}
             </div>
