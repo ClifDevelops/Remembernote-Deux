@@ -8,10 +8,7 @@ const SET_MEMORIES = "memories/SET"
 
 
 //ACTIONS
-// const setMemory = (memory) => ({
-//   type: SET_MEMORY,
-//   payload: memory,
-// });
+
 
 const load = (memories) => ({
     type: SET_MEMORIES,
@@ -44,9 +41,24 @@ export const logoutMemories = () => async (dispatch) => {
   dispatch(logout());
 };
 
-export const createMemory = data => async dispatch => {
-    console.log(data);
+export const createMemory = payload => async dispatch => {
     const response = await csrfFetch(`/api/memories`, {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
+    });
+
+    if (response.ok) {
+        const memory = await response.json();
+        dispatch(addMemory(memory));
+        return memory;
+    }
+}
+
+export const updateMemory = data => async dispatch => {
+    const response = await csrfFetch(`/api/memories/edit`, {
         method: 'post',
         headers: {
             'Content-Type': 'application/json',
@@ -61,20 +73,17 @@ export const createMemory = data => async dispatch => {
     }
 }
 
-export const updateMemory = data => async dispatch => {
-    console.log(data);
-    const response = await csrfFetch(`/api/memories/edit`, {
+export const addTag = payload => async dispatch => {
+    const response = await csrfFetch(`/api/memories/tag`, {
         method: 'post',
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json', 
         },
-        body: JSON.stringify(data)
-    });
-
+        body: JSON.stringify(payload)
+    })
     if (response.ok) {
-        const memory = await response.json();
-        dispatch(addMemory(memory));
-        return memory;
+        const tag = await response.json();
+        console.log(tag, payload.memoryId)
     }
 }
 
