@@ -45,8 +45,15 @@ router.get("/",
         where: {
           userId: currentUserId,
         },
-        order:[["dateOfMemory", "desc"]]
+        order:[["dateOfMemory", "desc"]],
+        include: [{
+          model: MemoryTag
+        }]
       });
+      memories.forEach(memory => {
+        console.log(memory.MemoryTags)
+      })
+      // console.log(memories)
       // Send those memories to be set to the Redux store.
       return res.json(memories);
     }))
