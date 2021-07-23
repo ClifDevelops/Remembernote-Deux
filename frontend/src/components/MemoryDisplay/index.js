@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory, NavLink } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
+import {addTag} from "../../store/memories"
 import "./MemoryDisplay.css"
 
 
@@ -27,8 +28,17 @@ const MemoryDisplay = () => {
       
     }
 
-    const handleTagSubmit = () => {
-      console.log(tag)
+    const handleTagSubmit = async (e) => {
+      e.preventDefault();
+      const payload = {
+        tag,
+        memoryId
+      }
+      
+      const addedTag = await dispatch(addTag(payload))
+      if (addedTag) {
+        setTag("")
+      }
     }
 
     if(!memory) history.push("/homepage")
@@ -40,7 +50,7 @@ const MemoryDisplay = () => {
             Head Back Home
           </button>
           <NavLink className='memory-edit-link' to={`/memories/${memoryId}/edit/`}>Edit this memory</NavLink>
-          <button className='memory-display-button' onClick={toggleForm}>Tag your memory</button>
+          <button className='memory-display-button' onClick={() =>toggleForm()}>Tag your memory</button>
           {tagFormToggle ? (
             <form onSubmit={handleTagSubmit} className="tag-form">
               <input type="text" placeholder='Tag here!' value={tag} onChange={(e) =>setTag(e.target.value)} className='tags-input'>
