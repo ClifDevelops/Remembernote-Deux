@@ -47,11 +47,12 @@ router.get("/",
         },
         order:[["dateOfMemory", "desc"]],
         include: [{
-          model: Tag
+          model: Tag,
+          through: {attributes:[]}
         }]
       });
       memories.forEach(memory => {
-        console.log(memory.Tags)
+        console.log(memory)
       })
       // console.log(memories)
       // Send those memories to be set to the Redux store.

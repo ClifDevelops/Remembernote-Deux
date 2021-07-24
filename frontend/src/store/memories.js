@@ -34,6 +34,7 @@ export const setMemories = () => async dispatch => {
       throw response;
     }
     const memories = await response.json();
+    // console.log(memories)
     dispatch(load(memories));
 }
 
@@ -100,6 +101,7 @@ const memoriesReducer = (state = initialState, action) => {
             return state;
         case SET_MEMORIES:
             action.payload.forEach((memory) => {
+                // console.log(memory.Tags)
                 newState[memory.id] = memory;
             });
             return newState;

@@ -18,6 +18,15 @@
     position: fixed;
     top: 5vh;
 }
+.tags-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.tags-title {
+    font-size: 2.6vh;
+    font-weight: 600;;
+}
 .memory-display-button {
     border: none;
     background-color: #0A1931;

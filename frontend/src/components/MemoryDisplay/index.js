@@ -11,6 +11,9 @@ import "./MemoryDisplay.css"
 const MemoryDisplay = () => {
     const {memoryId} = useParams();
     const memory = useSelector(state => state?.memories[memoryId]);
+    const tags = useSelector(state => state?.memories[memoryId].Tags)
+    console.log(tags)
+
     const dispatch = useDispatch();
     const history= useHistory();
     const [tagFormToggle, setTagFormToggle] = useState(false)
@@ -60,6 +63,20 @@ const MemoryDisplay = () => {
           ) : (
             ""
           )}
+          <div className='tags-display'>
+            <div className='tags-title'>Tags</div>
+            {tags.length ? (
+                tags.map((tag) => {
+                  return (
+                    <div>{tag.tagName}</div>
+                  )
+                })
+              
+            ) : (
+              <div>Tag this memory if you want.</div>
+            )
+            }
+          </div>
         </div>
         <div className='memory-display-container'>
           <div className="memory-display-title">{memory?.title}</div>
