@@ -32,7 +32,13 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Memory.associate = function(models) {
     Memory.belongsTo(models.User, { foreignKey: "userId" });
-    Memory.hasMany(models.MemoryTag, { foreignKey: 'memoryId'})
+
+    const columnMapping = {
+      through: 'MemoryTag',  //Join table
+      otherKey: 'tagId',     //Key that points to the other entity, Tag
+      foreignKey: 'memoryId' // Key that points to this entity, Memory
+    }
+    Memory.belongsToMany(models.Tag, columnMapping)
     
   };
   return Memory;
