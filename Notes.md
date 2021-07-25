@@ -60,3 +60,12 @@ router.get("/",
  ```bash 
  memoryInstance.setTags(tagInstance)
  ```
+ * because it would only allow one tagId to be associated to one memoryId on the MemoryTags table. I researched as far as I could, and it appears to just be a problem with Sequelize that people have been waiting for a solution to for over 6 years.
+ * After trial and error, I went with a pretty vanilla solution, but I just add the ids to the MemoryTags table:
+ ```bash
+ await MemoryTag.create({
+          memoryId,
+          tagId
+        })
+ ```
+ * and otherwise my queries seem to work fine. 
