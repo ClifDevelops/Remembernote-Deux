@@ -51,10 +51,7 @@ router.get("/",
           through: {attributes:[]}
         }]
       });
-      // memories.forEach(memory => {
-      //   console.log(memory)
-      // })
-      // console.log(memories)
+      
       // Send those memories to be set to the Redux store.
       return res.json(memories);
     }))
