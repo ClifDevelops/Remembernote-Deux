@@ -51,9 +51,9 @@ router.get("/",
           through: {attributes:[]}
         }]
       });
-      memories.forEach(memory => {
-        console.log(memory)
-      })
+      // memories.forEach(memory => {
+      //   console.log(memory)
+      // })
       // console.log(memories)
       // Send those memories to be set to the Redux store.
       return res.json(memories);
@@ -118,26 +118,23 @@ router.post(
         const tag = await Tag.create({
           tagName
         })
+        const tagId = tag.dataValues.id
         // On the next line we use a sequelize shortcut to attach the tag to the memory.
-        await memory.setTags(tag)
-        // tagId = tag.dataValues.id
-        // And here we grab the id off the newly created tag and add it to the memoryTags joins table.
-        // memoryTag = await MemoryTag.create({
-        //   memoryId,
-        //   tagId
-        // })
+        await MemoryTag.create({
+          memoryId,
+          tagId
+        })
         // Send back the new tag to be added to the Redux store.
         res.json(tag)
       } else {
-        // If we did find that the tag already existed, add it to the memoryTags joins table
-        // and send the result back
-        tagId = existingTag.dataValues.id
-        memoryTag = await MemoryTag.create({
+        // If we did find that the tag already existed, attach it to the memory
+        // and send the tag back to the Redux store
+        const tagId = existingTag.dataValues.id
+        await MemoryTag.create({
           memoryId,
           tagId
         })
         res.json(existingTag)
-        
       }
       
 

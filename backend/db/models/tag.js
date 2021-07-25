@@ -9,7 +9,10 @@ module.exports = (sequelize, DataTypes) => {
   Tag.associate = function(models) {
     
     const columnMapping = {
-      through: 'MemoryTag',  //Join table
+      through:{
+        model: 'MemoryTag',
+        unique: false
+      },  //Join table
       otherKey: 'memoryId',  //Key that points to the other entity, Memory
       foreignKey: 'tagId'    // Key that points to this entity, Tag
     }

@@ -11,6 +11,14 @@ const Homepage = () => {
     const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
     const memories = useSelector(state => state?.memories);
+    const tags = []
+    Object.values(memories).map(memory => {
+        return memory?.Tags?.forEach(tag => {
+          tags?.push(tag?.tagName)
+        })
+      })
+      
+    // console.log(tags)
     const [searchTerm, setSearchTerm] = useState("");
     
     useEffect(() => {
@@ -50,7 +58,8 @@ const Homepage = () => {
               } else if (
                 memory?.title
                   .toLowerCase()
-                  .includes(searchTerm.toLowerCase()) 
+                  .includes(searchTerm.toLowerCase())
+                
               ) {
                 return memory;
               }
