@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory, NavLink } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
-import {addTag} from "../../store/memories"
+import {addTag, setMemories} from "../../store/memories"
 import "./MemoryDisplay.css"
 
 
@@ -11,10 +11,17 @@ import "./MemoryDisplay.css"
 const MemoryDisplay = () => {
     const {memoryId} = useParams();
     const memory = useSelector(state => state?.memories[memoryId]);
+    const tags = useSelector(state => state?.memories[memoryId]?.Tags)
+
     const dispatch = useDispatch();
     const history= useHistory();
     const [tagFormToggle, setTagFormToggle] = useState(false)
     const [tag, setTag] = useState("")
+    
+    useEffect(()=> {
+      dispatch(setMemories())
+    }, [dispatch])
+    
     const headHome = () => {
       history.push("/homepage");
     };
@@ -36,6 +43,7 @@ const MemoryDisplay = () => {
       }
       
       const addedTag = await dispatch(addTag(payload))
+      await dispatch(setMemories())
       if (addedTag) {
         setTag("")
       }
@@ -60,6 +68,20 @@ const MemoryDisplay = () => {
           ) : (
             ""
           )}
+          <div className='tags-display'>
+            <div className='tags-title'>Tags</div>
+            {tags?.length ? (
+                tags?.map((tag) => {
+                  return (
+                    <div key={tag?.id}>{tag?.tagName}</div>
+                  )
+                })
+              
+            ) : (
+              <div>Tag this memory if you want.</div>
+            )
+            }
+          </div>
         </div>
         <div className='memory-display-container'>
           <div className="memory-display-title">{memory?.title}</div>

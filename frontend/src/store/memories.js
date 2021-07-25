@@ -5,6 +5,7 @@ const ADD_MEMORY = "memory/ADD";
 const DELETE_MEMORY = "memory/DELETE";
 const UNSET_MEMORIES = "memories/UNSET";
 const SET_MEMORIES = "memories/SET"
+const ADD_TAG = "tags/ADD"
 
 
 //ACTIONS
@@ -25,6 +26,11 @@ const logout = () => {
         type: UNSET_MEMORIES
     }
 }
+
+const addTagToStore = (tag, memoryId) => ({
+    type: ADD_TAG,
+    payload: tag, memoryId
+})
 //THUNKS (Async Actions)
 
 
@@ -34,6 +40,7 @@ export const setMemories = () => async dispatch => {
       throw response;
     }
     const memories = await response.json();
+    // console.log(memories)
     dispatch(load(memories));
 }
 
@@ -83,7 +90,10 @@ export const addTag = payload => async dispatch => {
     })
     if (response.ok) {
         const tag = await response.json();
+        const memoryId = parseInt(payload.memoryId, 10)
         console.log(tag, payload.memoryId)
+        dispatch(addTagToStore(tag, memoryId))
+        return tag;
     }
 }
 
@@ -100,12 +110,18 @@ const memoriesReducer = (state = initialState, action) => {
             return state;
         case SET_MEMORIES:
             action.payload.forEach((memory) => {
+                // console.log(memory.Tags)
                 newState[memory.id] = memory;
             });
             return newState;
         case UNSET_MEMORIES:
             return newState;
-
+        case ADD_TAG:
+            // console.log('HERE IS THE TAG', action.tag)
+            // console.log('Here is the memoryId', action.payload.memoryId)
+            // console.log(state[action.memoryId])
+            state[action.memoryId].Tags.push(action.tag)
+            return state
         
         default:
             return state;

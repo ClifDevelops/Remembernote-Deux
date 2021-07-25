@@ -34,7 +34,10 @@ module.exports = (sequelize, DataTypes) => {
     Memory.belongsTo(models.User, { foreignKey: "userId" });
 
     const columnMapping = {
-      through: 'MemoryTag',  //Join table
+      through:{
+        model: 'MemoryTag',
+        unique: false
+      },  //Join table
       otherKey: 'tagId',     //Key that points to the other entity, Tag
       foreignKey: 'memoryId' // Key that points to this entity, Memory
     }
