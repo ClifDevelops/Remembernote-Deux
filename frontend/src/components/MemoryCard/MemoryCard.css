@@ -1,14 +1,11 @@
 .single-memory-container{
-    font-size: 18px;
-    width: 200px;
-    height: 300px;
+    width: 90%;
+    height: 10vh;
     box-sizing: border-box;
-    margin: 20px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    margin: 6px;
+    padding: 3px;
+    display: grid;
+    grid-template-columns: 40% 60%;
     border: 2.3px solid #5B7B7A;
     border-radius: 4px;
     color: #0A1931;
@@ -18,10 +15,46 @@
 .memory-box-link {
     color: #0A1931;
     text-decoration: none;
+    font-size: 1.7vh;
+    grid-column: 1;
+    font-weight: 600;
+    box-sizing: border-box;
+    margin: 4%;
 }
 .memory-box-link:hover {
     text-decoration: underline;
 }
 .memory-box-link:visited {
     color: #0A1931;
+}
+.memory-box-details {
+    font-size: 10px;
+    height: 10vh;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    /* grid-template-rows: 50% 50%; */
+
+}
+.memory-box-date {
+    grid-column: 2;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.memory-box-rating {
+    grid-column: 2;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.memory-box-body {
+    font-size: 14px;
+    grid-column: 1;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    height: 6vh;
 }

@@ -120,7 +120,7 @@ const memoriesReducer = (state = initialState, action) => {
             // console.log('HERE IS THE TAG', action.tag)
             // console.log('Here is the memoryId', action.payload.memoryId)
             // console.log(state[action.memoryId])
-            state[action.memoryId].Tags.push(action.tag)
+            // state[action.memoryId].Tags.push(action.tag)
             return state
         
         default:
