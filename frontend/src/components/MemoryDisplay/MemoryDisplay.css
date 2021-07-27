@@ -12,8 +12,8 @@
     justify-content: space-evenly;
     align-items: center;
     box-sizing: border-box;
-    margin-left: 3vw;
-    margin-right: 3vw;
+    margin-left: 1vw;
+    margin-right: 2vw;
     height: 40vh;
     position: fixed;
     top: 5vh;
@@ -22,11 +22,25 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 25vw;
 }
 .tags-title {
     font-size: 2.6vh;
     font-weight: 600;;
 }
+.individual-tag {
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+}
+.tag-delete-button {
+    box-sizing: border-box;
+    /* margin-left: 10px; */
+    float: right;
+    background-color: brown;
+}
+
+
 .memory-display-button {
     border: none;
     background-color: #0A1931;

@@ -132,15 +132,25 @@ router.post(
           tagId
         })
         res.json(existingTag)
-      }
-      
-
-
-
-
-
+        }
     })
-
   )
 
+router.post(
+    "/tag/delete",
+    requireAuth,
+    asyncHandler(async function (req, res) {
+      let {tagId, memoryId} = req.body;
+      memoryId = parseInt(memoryId, 10)
+      console.log(tagId, memoryId)
+      const memoryTag = await MemoryTag.findOne({
+        where: {
+          memoryId,
+          tagId
+        }
+      })
+      await memoryTag.destroy()
+      await res.json('Success')
+    })
+  )
 module.exports = router;

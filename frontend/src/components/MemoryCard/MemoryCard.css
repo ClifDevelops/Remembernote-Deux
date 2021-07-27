@@ -1,6 +1,6 @@
 .single-memory-container{
     width: 90%;
-    height: 10vh;
+    min-height: 12vh;
     box-sizing: border-box;
     margin: 6px;
     padding: 3px;

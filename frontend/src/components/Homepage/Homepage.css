@@ -27,6 +27,8 @@
     align-items: center;
     box-sizing: border-box;
     margin-top: 20px;
+    height: 98vh;
+    overflow-y: scroll;
 }
 
 .greeting-link {

@@ -97,6 +97,20 @@ export const addTag = payload => async dispatch => {
     }
 }
 
+export const deleteTag = payload => async dispatch => {
+    const response = await csrfFetch(`/api/memories/tag/delete`, {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json', 
+        },
+        body: JSON.stringify(payload)
+    })
+    if (response.ok) {
+        return {}
+    }
+    
+}
+
 
 const initialState = {};
 //REDUCERS
