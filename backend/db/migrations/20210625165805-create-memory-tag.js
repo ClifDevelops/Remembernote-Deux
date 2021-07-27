@@ -11,11 +11,13 @@ module.exports = {
       memoryId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        onDelete: "CASCADE",
         references: { model: "Memories"}
       },
       tagId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        onDelete: "CASCADE",
         references: { model: "Tags"}
       },
       createdAt: {
