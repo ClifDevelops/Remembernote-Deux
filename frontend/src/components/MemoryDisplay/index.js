@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory, NavLink } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
-import {addTag, setMemories} from "../../store/memories"
+import {addTag, deleteTag, setMemories} from "../../store/memories"
 import "./MemoryDisplay.css"
 
 
@@ -49,6 +49,18 @@ const MemoryDisplay = () => {
       }
     }
 
+    const handleTagDelete = async (e, tagId) => {
+      e.preventDefault();
+      const payload = {
+        tagId,
+        memoryId
+      }
+      console.log(payload)
+      await dispatch(deleteTag(payload))
+      await dispatch(setMemories())
+
+    }
+
     if(!memory) history.push("/homepage")
 
     return (
@@ -58,6 +70,23 @@ const MemoryDisplay = () => {
             Head Back Home
           </button>
           <NavLink className='memory-edit-link' to={`/memories/${memoryId}/edit/`}>Edit this memory</NavLink>
+          <div className='tags-display'>
+            <div className='tags-title'>Tags</div>
+            {tags?.length ? (
+                tags?.map((tag) => {
+                  return (
+                    <div key={tag?.id} className='individual-tag'>
+                      <div className='tag-name'>{tag?.tagName}</div>
+                      <button className='tag-delete-button' onClick={(e) => handleTagDelete(e, tag.id)}>Delete</button>
+                    </div>
+                  )
+                })
+              
+            ) : (
+              <div>Tag this memory if you want.</div>
+            )
+            }
+          </div>
           <button className='memory-display-button' onClick={() =>toggleForm()}>Tag your memory</button>
           {tagFormToggle ? (
             <form onSubmit={handleTagSubmit} className="tag-form">
@@ -68,20 +97,6 @@ const MemoryDisplay = () => {
           ) : (
             ""
           )}
-          <div className='tags-display'>
-            <div className='tags-title'>Tags</div>
-            {tags?.length ? (
-                tags?.map((tag) => {
-                  return (
-                    <div key={tag?.id}>{tag?.tagName}</div>
-                  )
-                })
-              
-            ) : (
-              <div>Tag this memory if you want.</div>
-            )
-            }
-          </div>
         </div>
         <div className='memory-display-container'>
           <div className="memory-display-title">{memory?.title}</div>

@@ -11,11 +11,13 @@ function MemoryCard({memory}) {
     return (
         <div className="single-memory-container">
         <NavLink to={`/memories/${memory?.id}`} className="memory-box-link">
-            <h2 className="memory-title">{memory?.title}</h2>
+            <div >{memory?.title}</div>
         </NavLink>
-            <div>{memory?.dateOfMemory}</div>
-            <div>{memory?.memoryRating}</div>
-            <div>{ReactHtmlParser(memory?.body)}</div>
+            <div className='memory-box-details'>
+                <div className='memory-box-date'>{memory?.dateOfMemory}</div>
+                <div className='memory-box-rating'>Rating: {memory?.memoryRating}</div>
+                <div className='memory-box-body'>{ReactHtmlParser(memory?.body)}</div>
+            </div>
         </div>
 
     )
