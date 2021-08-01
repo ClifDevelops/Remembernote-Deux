@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory, NavLink } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
-import {addTag, deleteTag, setMemories} from "../../store/memories"
+import {addTag, deleteTag, setMemories, setMemory} from "../../store/memories"
 import "./MemoryDisplay.css"
 
 
@@ -10,17 +10,28 @@ import "./MemoryDisplay.css"
 
 const MemoryDisplay = () => {
     const {memoryId} = useParams();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+      dispatch(setMemory(memoryId))
+    }, [dispatch, memoryId])
+
     const memory = useSelector(state => state?.memories[memoryId]);
     const tags = useSelector(state => state?.memories[memoryId]?.Tags)
 
-    const dispatch = useDispatch();
+    
     const history= useHistory();
     const [tagFormToggle, setTagFormToggle] = useState(false)
     const [tag, setTag] = useState("")
+    const [loaded, setLoaded] = useState(false)
     
-    useEffect(()=> {
-      dispatch(setMemories())
-    }, [dispatch])
+    // let loadMemory = async () => {
+    //     await dispatch(setMemory(memoryId));
+    //     setLoaded(true)
+    //   }
+    // useEffect(() => {
+    //   loadMemory() 
+    // })
     
     const headHome = () => {
       history.push("/homepage");
@@ -43,7 +54,7 @@ const MemoryDisplay = () => {
       }
       
       const addedTag = await dispatch(addTag(payload))
-      await dispatch(setMemories())
+      await dispatch(setMemory(memoryId))
       if (addedTag) {
         setTag("")
       }
@@ -57,7 +68,7 @@ const MemoryDisplay = () => {
       }
       console.log(payload)
       await dispatch(deleteTag(payload))
-      await dispatch(setMemories())
+      await dispatch(setMemory(memoryId))
 
     }
 

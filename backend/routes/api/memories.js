@@ -35,6 +35,29 @@ const validateMemory = [
 ];
 
 
+router.get("/:id",
+requireAuth,
+asyncHandler(async function (req, res) {
+  // Here we are going to get the user's id and find all of the memories on the memories table
+  // that are attached to that user's id.
+  // const currentUserId = await getCurrentUserId(req);
+  const id = parseInt(req.params.id, 10)
+  console.log(id)
+  const memory = await Memory.findOne({
+    where: {
+      id: id
+    },
+    include: [{
+      model: Tag,
+      through: {attributes:[]}
+    }],
+  })
+  // console.log(memory)
+  // Send those memories to be set to the Redux store.
+  // return
+  return res.json(memory);
+}))
+
 router.get("/",
     requireAuth,
     asyncHandler(async function (req, res) {
@@ -45,14 +68,16 @@ router.get("/",
         where: {
           userId: currentUserId,
         },
+        attributes: ['id','title', 'dateOfMemory'],
         order:[["dateOfMemory", "desc"]],
         include: [{
           model: Tag,
           through: {attributes:[]}
         }]
       });
-      
+      // console.log(memories)
       // Send those memories to be set to the Redux store.
+      // return
       return res.json(memories);
     }))
 
