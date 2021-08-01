@@ -18,6 +18,7 @@ const MemoryDisplay = () => {
 
     const memory = useSelector(state => state?.memories[memoryId]);
     const tags = useSelector(state => state?.memories[memoryId]?.Tags)
+    const userId = useSelector((state) => state.session.user.id);
 
     
     const history= useHistory();
@@ -50,7 +51,8 @@ const MemoryDisplay = () => {
       e.preventDefault();
       const payload = {
         tag,
-        memoryId
+        memoryId,
+        userId
       }
       
       const addedTag = await dispatch(addTag(payload))
