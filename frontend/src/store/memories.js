@@ -33,14 +33,23 @@ const addTagToStore = (tag, memoryId) => ({
 })
 //THUNKS (Async Actions)
 
-
+export const setMemory = (id) => async dispatch => {
+    const response = await csrfFetch(`/api/memories/${id}`)
+    if (!response.ok) {
+        throw response;
+    }
+    const memory = await response.json();
+    console.log(memory)
+    dispatch(addMemory(memory));
+    return memory;
+}
 export const setMemories = () => async dispatch => {
     const response = await csrfFetch(`/api/memories`);
     if (!response.ok) {
       throw response;
     }
     const memories = await response.json();
-    // console.log(memories)
+    // console.log("------------------",memories)
     dispatch(load(memories));
 }
 
@@ -91,7 +100,7 @@ export const addTag = payload => async dispatch => {
     if (response.ok) {
         const tag = await response.json();
         const memoryId = parseInt(payload.memoryId, 10)
-        console.log(tag, payload.memoryId)
+        // console.log(tag, payload.memoryId)
         dispatch(addTagToStore(tag, memoryId))
         return tag;
     }
@@ -124,7 +133,7 @@ const memoriesReducer = (state = initialState, action) => {
             return state;
         case SET_MEMORIES:
             action.payload.forEach((memory) => {
-                // console.log(memory.Tags)
+                // console.log(action.payload)
                 newState[memory.id] = memory;
             });
             return newState;

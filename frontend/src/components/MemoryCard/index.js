@@ -15,8 +15,8 @@ function MemoryCard({memory}) {
         </NavLink>
             <div className='memory-box-details'>
                 <div className='memory-box-date'>{memory?.dateOfMemory}</div>
-                <div className='memory-box-rating'>Rating: {memory?.memoryRating}</div>
-                <div className='memory-box-body'>{ReactHtmlParser(memory?.body)}</div>
+                {/* <div className='memory-box-rating'>Rating: {memory?.memoryRating}</div>
+                <div className='memory-box-body'>{ReactHtmlParser(memory?.body)}</div> */}
             </div>
         </div>
 
