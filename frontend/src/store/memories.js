@@ -90,7 +90,7 @@ export const updateMemory = data => async dispatch => {
 }
 
 export const addTag = payload => async dispatch => {
-    const response = await csrfFetch(`/api/memories/tag`, {
+    const response = await csrfFetch(`/api/tags`, {
         method: 'post',
         headers: {
             'Content-Type': 'application/json', 
@@ -107,7 +107,7 @@ export const addTag = payload => async dispatch => {
 }
 
 export const deleteTag = payload => async dispatch => {
-    const response = await csrfFetch(`/api/memories/tag/delete`, {
+    const response = await csrfFetch(`/api/tags/delete`, {
         method: 'post',
         headers: {
             'Content-Type': 'application/json', 
