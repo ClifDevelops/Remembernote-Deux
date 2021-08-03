@@ -8,15 +8,26 @@ const load = (tags) => ({
     payload: tags
 });
 
-export const setTags = () => async dispatch => {
-    const response = await csrfFetch(`/api/tags`);
+const logout = () => {
+    return {
+        type: UNSET_TAGS
+    }
+}
+
+
+export const setTags = (userId) => async dispatch => {
+    const response = await csrfFetch(`/api/tags/${userId}`);
     if (!response.ok) {
       throw response;
     }
     const tags = await response.json();
-    // console.log("------------------",memories)
+    console.log("------------------",tags)
     dispatch(load(tags));
 }
+
+export const logoutTags = () => async (dispatch) => {
+    dispatch(logout());
+  };
 
 const initialState = {};
 //REDUCERS
@@ -25,9 +36,9 @@ const tagsReducer = (state = initialState, action) => {
     switch(action.type) {
         
         case SET_TAGS:
-            action.payload.forEach((memory) => {
+            action.payload.forEach((tag) => {
                 // console.log(action.payload)
-                newState[memory.id] = memory;
+                newState[tag.id] = tag;
             });
             return newState;
         case UNSET_TAGS:

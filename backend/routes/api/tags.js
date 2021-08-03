@@ -10,13 +10,19 @@ const router = express.Router();
 
 
 router.get(
-  "/",
+  "/:userId",
   requireAuth,
   asyncHandler(async function (req, res) {
-    const {userId} = req.body
+    const {userId} = req.params;
+    
+    const tags = await Tag.findAll({
+      where: {
+        userId
+      }
+    })
+    
 
-
-
+    return res.json(tags)
   })
 )
 

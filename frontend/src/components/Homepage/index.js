@@ -4,6 +4,7 @@ import { useParams, Route, Redirect, NavLink } from "react-router-dom";
 import ReactHtmlParser from 'react-html-parser';
 import MemoryCard from '../MemoryCard';
 import { setMemories, logoutMemories } from "../../store/memories";
+import { setTags, logoutTags } from '../../store/tags';
 import { logoutSession } from '../../store/session';
 import './Homepage.css';
 
@@ -11,24 +12,33 @@ const Homepage = () => {
     const sessionUser = useSelector((state) => state.session.user);
     const userId = sessionUser.id
     const dispatch = useDispatch();
+    
+    useEffect(() => {
+          dispatch(setMemories())
+          dispatch(setTags(userId))
+        }, [dispatch, userId])
+
     const memories = useSelector(state => state?.memories);
-    const tags = []
-    Object.values(memories).map(memory => {
-        return memory?.Tags?.forEach(tag => {
-          tags?.push(tag?.tagName)
-        })
-      })
+    const tags = useSelector(state => state?.tags)
+    console.log('HERE ARE THE TAGS', tags)
+    // const tags = []
+    // Object.values(memories).map(memory => {
+    //     return memory?.Tags?.forEach(tag => {
+    //       tags?.push(tag?.tagName)
+    //     })
+    //   })
       
     // console.log(tags)
     const [searchTerm, setSearchTerm] = useState("");
     
-    useEffect(() => {
-      dispatch(setMemories())
-    }, [dispatch])
+    
+
+
     
     const onLogout = async () => {
       await dispatch(logoutMemories());
       await dispatch(logoutSession());
+      await dispatch(logoutTags());
     }
 
     if (!sessionUser){
