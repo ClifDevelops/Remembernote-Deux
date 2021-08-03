@@ -9,6 +9,7 @@ import './Homepage.css';
 
 const Homepage = () => {
     const sessionUser = useSelector((state) => state.session.user);
+    const userId = sessionUser.id
     const dispatch = useDispatch();
     const memories = useSelector(state => state?.memories);
     const tags = []

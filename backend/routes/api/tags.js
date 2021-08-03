@@ -9,6 +9,17 @@ const { handleValidationErrors } = require("../../utils/validation");
 const router = express.Router();
 
 
+router.get(
+  "/",
+  requireAuth,
+  asyncHandler(async function (req, res) {
+    const {userId} = req.body
+
+
+
+  })
+)
+
 router.post(
     "/",
     requireAuth,
