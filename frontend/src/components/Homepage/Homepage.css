@@ -22,6 +22,7 @@
     grid-column: 2;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     overflow-y: scroll;
     justify-content: flex-start;
     align-items: center;

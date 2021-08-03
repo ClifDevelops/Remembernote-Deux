@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory, NavLink } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
-import {addTag, deleteTag, setMemories, setMemory} from "../../store/memories"
+import {addTag, deleteTag, setMemory} from "../../store/memories"
 import "./MemoryDisplay.css"
 
 
@@ -24,15 +24,7 @@ const MemoryDisplay = () => {
     const history= useHistory();
     const [tagFormToggle, setTagFormToggle] = useState(false)
     const [tag, setTag] = useState("")
-    const [loaded, setLoaded] = useState(false)
-    
-    // let loadMemory = async () => {
-    //     await dispatch(setMemory(memoryId));
-    //     setLoaded(true)
-    //   }
-    // useEffect(() => {
-    //   loadMemory() 
-    // })
+   
     
     const headHome = () => {
       history.push("/homepage");
