@@ -15,10 +15,6 @@ function SignupFormPage() {
 
   if (sessionUser) return <Redirect to="/homepage" />;
 
-
-  const handleCancel = () => {
-    return <Redirect to='/' />
-  }
   
   const handleSubmit = (e) => {
     e.preventDefault();

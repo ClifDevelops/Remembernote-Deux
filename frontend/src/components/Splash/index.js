@@ -10,7 +10,6 @@ const Splash = () => {
     const sessionUser = useSelector(state => state.session.user);
     const [credential, setCredential] = useState('Demomemories');
     const [password, setPassword] = useState('password');
-    const [errors, setErrors] = useState([]);
     
     const demoLogin = async () => {
         await dispatch(sessionActions.login({credential, password}))

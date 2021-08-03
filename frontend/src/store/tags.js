@@ -21,7 +21,7 @@ export const setTags = (userId) => async dispatch => {
       throw response;
     }
     const tags = await response.json();
-    console.log("------------------",tags)
+
     dispatch(load(tags));
 }
 

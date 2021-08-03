@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch  } from 'react-redux';
-import { useParams, Route, Redirect, NavLink } from "react-router-dom";
-import ReactHtmlParser from 'react-html-parser';
+import { Redirect, NavLink } from "react-router-dom";
 import MemoryCard from '../MemoryCard';
 import { setMemories, logoutMemories } from "../../store/memories";
 import { setTags, logoutTags } from '../../store/tags';
@@ -21,14 +20,7 @@ const Homepage = () => {
     const memories = useSelector(state => state?.memories);
     const tags = useSelector(state => state?.tags)
     console.log('HERE ARE THE TAGS', tags)
-    // const tags = []
-    // Object.values(memories).map(memory => {
-    //     return memory?.Tags?.forEach(tag => {
-    //       tags?.push(tag?.tagName)
-    //     })
-    //   })
-      
-    // console.log(tags)
+    
     const [searchTerm, setSearchTerm] = useState("");
     
     

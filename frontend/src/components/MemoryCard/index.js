@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import * as sessionActions from "../../store/session";
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect, NavLink, Link } from "react-router-dom";
+import React from "react";
+
+import { NavLink} from "react-router-dom";
 import ReactHtmlParser from 'react-html-parser';
 import "./MemoryCard.css";
 
