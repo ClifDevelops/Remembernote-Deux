@@ -50,6 +50,9 @@ const Homepage = () => {
           setSearchTerm(e.target.value);
         }}
         />
+        <div>
+          <button className='homepage-tag-button' onClick={()=> dispatch(setMemories())}>Show all memories</button>
+        </div>
         <div className='homepage-tags-container'>
         {Object.values(tags)
         .map((tag) => {
