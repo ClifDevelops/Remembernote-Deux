@@ -11,33 +11,25 @@
     border-right: solid 2px aliceblue;
     background-color: #0A1931;
     color: #A896CF;
+    display: grid;
+    grid-template-rows: 15vh 15vh 50vh 20vh;
+    
 }
 
 .homepage-greeting {
-    /* grid-column: 1; */
     font-size: 30px;
-}
-
-.memory-list-container {
-    grid-column: 2;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    overflow-y: scroll;
-    justify-content: flex-start;
-    align-items: center;
+    grid-row: 1;
     box-sizing: border-box;
-    margin-top: 20px;
-    height: 98vh;
-    overflow-y: scroll;
+    margin: 1vw;
+    color: whitesmoke;
 }
 
 .greeting-link {
-    color: #A896CF;
+    color: #664c9e;
     text-decoration: none;
 }
 .greeting-link:visited {
-    color: #A896CF;
+    color: #664c9e;
 }
 .greeting-link:hover {
     text-decoration: underline;
@@ -46,18 +38,45 @@
 .memories-search-input {
     font-size: 20px;
     box-sizing: border-box;
-    margin: 65px;
+    margin: 5vw;
     border:2.5px solid darkgray;
     width: 15vw;
+    height: 4vh;
+    grid-row: 2;
 }
 .memories-search-input:focus {
     outline: 0;
 }
-
+.homepage-tags-container {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    margin-left: 5vw;
+    /* align-items: flex-start; */
+    width: 15vw;
+    grid-row: 3;
+    height: 40vh;
+    overflow-y: auto;
+}
+.homepage-tag-button {
+    background-color: #d6cbf0;
+    height: 3.2vh;
+    font-size: 2.2vh;
+    width: 15vw;
+    box-sizing: border-box;
+    /* margin-left: 5vw; */
+    margin-top: .4vh;
+    border: 1px solid #6241b1;
+    border-radius: 3px;
+}
+.homepage-tag-button:active {
+    background-color: #6241b1;
+}
 .logout-button-container {
-    position: relative;
-    bottom: -56vh;
-    left: 5vw;
+    /* left: 5vw; */
+    grid-row: 4;
+    box-sizing: border-box;
+    margin-left: 5vw;
 }
 .logout-button {
     width: 15vw;
@@ -71,4 +90,20 @@
 }
 .logout-button:hover {
     border: 2px solid #A896CF;
+}
+
+
+
+.memory-list-container {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+    margin-top: 20px;
+    height: 98vh;
+    overflow-y: scroll;
 }

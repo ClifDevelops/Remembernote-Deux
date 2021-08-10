@@ -8,9 +8,42 @@ const { handleValidationErrors } = require("../../utils/validation");
 
 const router = express.Router();
 
-
 router.get(
-  "/:userId",
+  "/:tagId",
+  requireAuth,
+  asyncHandler(async function (req, res) {
+    const {tagId} =  req.params;
+    const memoryTags = await MemoryTag.findAll({
+      where: {
+        tagId
+      }
+    })
+    
+    
+    let memories = []
+    
+    let memoryFinder = async () => {
+      for (let i = 0; i < memoryTags.length; i++){
+        let memoryId = memoryTags[i].dataValues.memoryId;
+        let memory = await Memory.findOne({
+          where: {
+            id: memoryId
+          },
+          attributes: ['id','title', 'dateOfMemory'],
+        })
+        // console.log(memory)
+        memories.push(memory)
+        // console.log('here are the memories inside the loop', memories)
+      }
+    }
+    await memoryFinder()
+    
+    return res.json(memories)
+
+  })
+)
+router.get(
+  "/user/:userId",
   requireAuth,
   asyncHandler(async function (req, res) {
     const {userId} = req.params;
@@ -25,6 +58,10 @@ router.get(
     return res.json(tags)
   })
 )
+
+
+
+
 
 router.post(
     "/",

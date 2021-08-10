@@ -16,7 +16,7 @@ const logout = () => {
 
 
 export const setTags = (userId) => async dispatch => {
-    const response = await csrfFetch(`/api/tags/${userId}`);
+    const response = await csrfFetch(`/api/tags/user/${userId}`);
     if (!response.ok) {
       throw response;
     }
@@ -37,7 +37,6 @@ const tagsReducer = (state = initialState, action) => {
         
         case SET_TAGS:
             action.payload.forEach((tag) => {
-                // console.log(action.payload)
                 newState[tag.id] = tag;
             });
             return newState;
