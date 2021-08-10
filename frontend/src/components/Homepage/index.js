@@ -19,7 +19,7 @@ const Homepage = () => {
 
   const memories = useSelector(state => state?.memories);
   const tags = useSelector(state => state?.tags)
-  console.log('HERE ARE THE TAGS', tags)
+  // console.log('HERE ARE THE TAGS', tags)
   
   const [searchTerm, setSearchTerm] = useState("");
   

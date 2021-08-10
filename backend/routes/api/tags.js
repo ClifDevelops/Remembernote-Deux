@@ -13,15 +13,32 @@ router.get(
   requireAuth,
   asyncHandler(async function (req, res) {
     const {tagId} =  req.params;
-    console.log('hitting this route and here is the tagId', tagId)
     const memoryTags = await MemoryTag.findAll({
       where: {
         tagId
       }
     })
-    console.log(memoryTags)
-
-    return res.json('Hello')
+    
+    
+    let memories = []
+    
+    let memoryFinder = async () => {
+      for (let i = 0; i < memoryTags.length; i++){
+        let memoryId = memoryTags[i].dataValues.memoryId;
+        let memory = await Memory.findOne({
+          where: {
+            id: memoryId
+          },
+          attributes: ['id','title', 'dateOfMemory'],
+        })
+        // console.log(memory)
+        memories.push(memory)
+        // console.log('here are the memories inside the loop', memories)
+      }
+    }
+    await memoryFinder()
+    
+    return res.json(memories)
 
   })
 )

@@ -61,7 +61,7 @@ export const setTaggedMemories = (tagId) => async dispatch => {
     }
     const memories = await response.json();
     console.log(memories)
-    // dispatch(load(memories))
+    dispatch(load(memories))
 }
 
 export const logoutMemories = () => async (dispatch) => {
@@ -144,7 +144,7 @@ const memoriesReducer = (state = initialState, action) => {
             return state;
         case SET_MEMORIES:
             action.payload.forEach((memory) => {
-                // console.log(action.payload)
+                console.log(memory)
                 newState[memory.id] = memory;
             });
             return newState;
