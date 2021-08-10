@@ -16,7 +16,7 @@ const logout = () => {
 
 
 export const setTags = (userId) => async dispatch => {
-    const response = await csrfFetch(`/api/tags/${userId}`);
+    const response = await csrfFetch(`/api/tags/user/${userId}`);
     if (!response.ok) {
       throw response;
     }

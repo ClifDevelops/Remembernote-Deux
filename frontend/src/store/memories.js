@@ -53,6 +53,17 @@ export const setMemories = () => async dispatch => {
     dispatch(load(memories));
 }
 
+export const setTaggedMemories = (tagId) => async dispatch => {
+    console.log('Here is the tagId', tagId)
+    const response = await csrfFetch(`/api/tags/${tagId}`);
+    if (!response.ok) {
+        throw response;
+    }
+    const memories = await response.json();
+    console.log(memories)
+    // dispatch(load(memories))
+}
+
 export const logoutMemories = () => async (dispatch) => {
   dispatch(logout());
 };

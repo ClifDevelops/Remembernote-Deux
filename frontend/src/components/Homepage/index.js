@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch  } from 'react-redux';
 import { Redirect, NavLink } from "react-router-dom";
 import MemoryCard from '../MemoryCard';
-import { setMemories, logoutMemories } from "../../store/memories";
+import { setMemories, setTaggedMemories, logoutMemories } from "../../store/memories";
 import { setTags, logoutTags } from '../../store/tags';
 import { logoutSession } from '../../store/session';
 import './Homepage.css';
@@ -54,7 +54,7 @@ const Homepage = () => {
         {Object.values(tags)
         .map((tag) => {
           return (
-            <button className='homepage-tag-button' key={tag?.id}>{tag?.tagName}</button>
+            <button className='homepage-tag-button' key={tag?.id} onClick={()=> dispatch(setTaggedMemories(tag?.id))}>{tag?.tagName}</button>
           )
         })}
         </div>

@@ -8,9 +8,25 @@ const { handleValidationErrors } = require("../../utils/validation");
 
 const router = express.Router();
 
-
 router.get(
-  "/:userId",
+  "/:tagId",
+  requireAuth,
+  asyncHandler(async function (req, res) {
+    const {tagId} =  req.params;
+    console.log('hitting this route and here is the tagId', tagId)
+    const memoryTags = await MemoryTag.findAll({
+      where: {
+        tagId
+      }
+    })
+    console.log(memoryTags)
+
+    return res.json('Hello')
+
+  })
+)
+router.get(
+  "/user/:userId",
   requireAuth,
   asyncHandler(async function (req, res) {
     const {userId} = req.params;
@@ -25,6 +41,10 @@ router.get(
     return res.json(tags)
   })
 )
+
+
+
+
 
 router.post(
     "/",
