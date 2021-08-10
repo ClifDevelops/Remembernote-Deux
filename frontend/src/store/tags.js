@@ -37,7 +37,6 @@ const tagsReducer = (state = initialState, action) => {
         
         case SET_TAGS:
             action.payload.forEach((tag) => {
-                // console.log(action.payload)
                 newState[tag.id] = tag;
             });
             return newState;

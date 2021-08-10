@@ -8,34 +8,29 @@ import { logoutSession } from '../../store/session';
 import './Homepage.css';
 
 const Homepage = () => {
-  const sessionUser = useSelector((state) => state.session.user);
-  const userId = sessionUser.id
+  const sessionUser = useSelector((state) => state?.session.user);
+  const userId = sessionUser?.id
   const dispatch = useDispatch();
-  
   useEffect(() => {
         dispatch(setMemories())
         dispatch(setTags(userId))
       }, [dispatch, userId])
-
-  const memories = useSelector(state => state?.memories);
-  const tags = useSelector(state => state?.tags)
-  // console.log('HERE ARE THE TAGS', tags)
   
-  const [searchTerm, setSearchTerm] = useState("");
-  
-  
+      
+      const memories = useSelector(state => state?.memories);
+      const tags = useSelector(state => state?.tags)
+      
+      const [searchTerm, setSearchTerm] = useState("");
+      if (!sessionUser){
+        return <Redirect to="/" />;
+      } 
+      
+      const onLogout = async () => {
+        await dispatch(logoutMemories());
+        await dispatch(logoutTags());
+        await dispatch(logoutSession());
+      }
 
-
-  
-  const onLogout = async () => {
-    await dispatch(logoutMemories());
-    await dispatch(logoutSession());
-    await dispatch(logoutTags());
-  }
-
-  if (!sessionUser){
-    return <Redirect to="/" />;
-  } 
     
   return (
     <div className="homepage-container">
@@ -50,10 +45,10 @@ const Homepage = () => {
           setSearchTerm(e.target.value);
         }}
         />
+        <div className='homepage-tags-container'>
         <div>
           <button className='homepage-tag-button' onClick={()=> dispatch(setMemories())}>Show all memories</button>
         </div>
-        <div className='homepage-tags-container'>
         {Object.values(tags)
         .map((tag) => {
           return (
@@ -61,7 +56,7 @@ const Homepage = () => {
           )
         })}
         </div>
-        <div className='logout-button-container'><button className='logout-button' onClick={onLogout}>Logout</button></div>
+        <div className='logout-button-container'><button className='logout-button' onClick={()=>onLogout()}>Logout</button></div>
       </div>
 
       <div className="memory-list-container">
