@@ -6,14 +6,17 @@
     padding: 3px;
     display: grid;
     grid-template-columns: 60% 40%;
-    border: 2.3px solid #0A0908;
+    /* border: 2.3px solid #0A0908; */
     border-radius: 4px;
     color: #0A0908;
     overflow: hidden;
+    box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1),
+                0 0  0 2px rgb(255,255,255),
+                0.3em 0.3em 1em rgba(0,0,0,0.3);
 }
-.single-memory-container:hover {
+/* .single-memory-container:hover {
     border: 2.3px solid #49111C;
-}
+} */
 
 .memory-box-link {
     color: #0A0908;

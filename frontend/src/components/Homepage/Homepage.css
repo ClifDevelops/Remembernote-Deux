@@ -9,7 +9,7 @@
 .homepage-sidebar {
     grid-column: 1;
     /* border-right: solid 2px aliceblue; */
-    background-color: #49111C;
+    background-color: #21080D;
     color: #F2F4F3;
     display: grid;
     grid-template-rows: 15vh 15vh 50vh 20vh;
@@ -69,6 +69,8 @@
     margin-top: .4vh;
     border: 1px solid #01BAEF;
     border-radius: 3px;
+    box-shadow: inset 0 -3em 3em rgba(182, 230, 242,0.1),
+    0.3em 0.3em 1em rgba(182, 230, 242,0.3);
 }
 .homepage-tag-button:hover {
     background-color: #bb969c;
