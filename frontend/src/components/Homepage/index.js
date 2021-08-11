@@ -36,11 +36,12 @@ const Homepage = () => {
     <div className="homepage-container">
       <div className='homepage-sidebar'>
         <div className='homepage-greeting'> Hello {sessionUser.username}! 
-        Go ahead and <NavLink className='greeting-link' to='memoryForm'>record another memory!</NavLink></div>
+        Go ahead and <NavLink className='greeting-link' to='memoryForm'>record another memory!</NavLink>
+        </div>
         <input
         className='memories-search-input'
         type="text"
-        placeholder="Search your memories"
+        placeholder="Filter by title or year"
         onChange={(e) => {
           setSearchTerm(e.target.value);
         }}
@@ -66,6 +67,9 @@ const Homepage = () => {
           return memory;
         } else if (
           memory?.title
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase()) ||
+            memory?.dateOfMemory
             .toLowerCase()
             .includes(searchTerm.toLowerCase())
           

@@ -29,6 +29,10 @@ const MemoryDisplay = () => {
     const headHome = () => {
       history.push("/homepage");
     };
+
+    const editMemory = () => {
+      history.push(`/memories/${memoryId}/edit/`);
+    };
      
     const toggleForm = () => {
       if (tagFormToggle === false) {
@@ -71,10 +75,26 @@ const MemoryDisplay = () => {
     return (
       <div className="memory-display">
         <div className='memory-display-navigation'>
+          <div className='memory-nav-button-container'>
           <button className="memory-display-button" onClick={headHome}>
-            Head Back Home
+            Home
           </button>
-          <NavLink className='memory-edit-link' to={`/memories/${memoryId}/edit/`}>Edit this memory</NavLink>
+          <button className="memory-display-button" onClick={editMemory}>
+            Edit
+          </button>
+          <button className='memory-display-button' onClick={() =>toggleForm()}>
+            Tag your memory
+          </button>
+        </div>
+            {tagFormToggle ? (
+              <form onSubmit={handleTagSubmit} className="tag-form">
+                <input type="text" placeholder='Tag here!' value={tag} onChange={(e) =>setTag(e.target.value)} className='tags-input'>
+                </input>
+                <button type="submit" className="tag-form-button">Commit your tag</button>
+              </form>
+            ) : (
+              ""
+            )}
           <div className='tags-display'>
             <div className='tags-title'>Tags</div>
             {tags?.length ? (
@@ -92,23 +112,13 @@ const MemoryDisplay = () => {
             )
             }
           </div>
-          <button className='memory-display-button' onClick={() =>toggleForm()}>Tag your memory</button>
-          {tagFormToggle ? (
-            <form onSubmit={handleTagSubmit} className="tag-form">
-              <input type="text" placeholder='Tag here!' value={tag} onChange={(e) =>setTag(e.target.value)} className='tags-input'>
-              </input>
-              <button type="submit" className="tag-form-button">Commit your tag</button>
-            </form>
-          ) : (
-            ""
-          )}
         </div>
         <div className='memory-display-container'>
           <div className="memory-display-title">{memory?.title}</div>
-          <div className="memory-display-date">{memory?.dateOfMemory}</div>
-          <div className="memory-display-location">{memory?.location}</div>
-          <div className="memory-display-rating">
-            Memory Rating: {memory?.memoryRating}
+          <div className='memory-details-container'>
+            <div className="memory-detail">{memory?.dateOfMemory}</div>
+            <div className="memory-detail">{memory?.location}</div>
+            <div className="memory-detail">Memory Rating: {memory?.memoryRating}</div>
           </div>
           <div className="memory-display-body">{ReactHtmlParser(memory?.body)}</div>
         </div>

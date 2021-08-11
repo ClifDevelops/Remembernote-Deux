@@ -45,13 +45,13 @@
     box-sizing: border-box;
     margin-top: 15px;
     margin-left: 20%;
-    background-color: #0A1931;
-    color: #A896CF;
+    background-color: #49111C;
+    color: #F2F4F3;
     border: none;
     border-radius: 5px;
     font-family: inherit;
     font-size: 2.5vh;
 }
 .demo-login-button:hover {
-    border: 2px solid #A896CF;
+    border: 2px solid #0A0908;
 }

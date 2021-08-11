@@ -6,16 +6,22 @@
     padding: 3px;
     display: grid;
     grid-template-columns: 60% 40%;
-    border: 2.3px solid #5B7B7A;
+    /* border: 2.3px solid #0A0908; */
     border-radius: 4px;
-    color: #0A1931;
+    color: #0A0908;
     overflow: hidden;
+    box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1),
+                0 0  0 2px rgb(255,255,255),
+                0.3em 0.3em 1em rgba(0,0,0,0.3);
 }
+/* .single-memory-container:hover {
+    border: 2.3px solid #49111C;
+} */
 
 .memory-box-link {
-    color: #0A1931;
+    color: #0A0908;
     text-decoration: none;
-    font-size: 1.7vh;
+    font-size: 2.5vh;
     grid-column: 1;
     font-weight: 600;
     box-sizing: border-box;
@@ -25,7 +31,7 @@
     text-decoration: underline;
 }
 .memory-box-link:visited {
-    color: #0A1931;
+    color: #0A0908;
 }
 /* .memory-box-details {
     font-size: 10px;
@@ -35,7 +41,7 @@
 } */
 .memory-box-date {
     grid-column: 2;
-    font-size: 16px;
+    font-size: 2vh;
     display: flex;
     justify-content: center;
     align-items: center;

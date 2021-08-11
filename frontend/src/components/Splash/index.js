@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import "./Splash.css";
-import Logo from '../../images/remembernote-logo.png'
+import Logo from '../../images/black-logo.png'
 import * as sessionActions from '../../store/session';
 
 const Splash = () => {

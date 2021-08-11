@@ -9,20 +9,51 @@
     grid-row: 2;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: center;
     box-sizing: border-box;
     margin-left: 1vw;
     margin-right: 2vw;
-    height: 40vh;
+    height: 50vh;
     position: fixed;
-    top: 5vh;
+    top: 12vh;
+    box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1),
+                0 0  0 2px rgb(35, 113, 133),
+                0.3em 0.3em 1em rgba(0,0,0,0.3);
+    border-radius: 4px;
 }
+.memory-nav-button-container {
+    display: flex;
+    width: 25vw;
+    justify-content: space-between;
+}
+.memory-display-button {
+    border: none;
+    background-color: #0A0908;
+    color: #9E8388;
+    width: fit-content;
+    height: 4.3vh;
+    font-size: 2.5vh;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 5px;
+    margin: 10px;
+}
+.memory-display-button:hover {
+    text-decoration: underline;
+}
+
 .tags-display {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
     width: 25vw;
+    height: 35vh;
+    overflow-y: scroll;
+    box-sizing: border-box;
+    padding: 10px;
+    /* border: 1px solid black; */
 }
 .tags-title {
     font-size: 2.6vh;
@@ -30,29 +61,53 @@
 }
 .individual-tag {
     display: flex;
-    width: 80%;
+    width: 66%;
     justify-content: space-between;
+    box-sizing: border-box;
+    margin-top: 4px;
+}
+.tags-input {
+    box-sizing: border-box;
+    border: none;
+    border-radius: 2px;
+    box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1),
+                0 0  0 2px rgb(255,255,255),
+                0.3em 0.3em 1em rgba(0,0,0,0.3);
+    box-sizing: border-box;
+    margin: 4px;
+    text-align: center;
+}
+.tags-input:focus {
+    outline: 0;;
+}
+.tag-form-button {
+    box-sizing: border-box;
+    background-color: #F2F4F3;
+    border: none;
+    border-radius: 2px;
+    box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1),
+                0 0  0 2px rgb(255,255,255),
+                0.3em 0.3em 1em rgba(0,0,0,0.3);
+    box-sizing: border-box;
+    margin: 4px;
 }
 .tag-delete-button {
     box-sizing: border-box;
-    /* margin-left: 10px; */
     float: right;
-    background-color: brown;
-}
-
-
-.memory-display-button {
+    background-color: #F2F4F3;
     border: none;
-    background-color: #0A1931;
-    color: #A896CF;
-    width: fit-content;
-    height: 4vh;
-    font-size: 2.5vh;
-    border-radius: 5px;
+    border-radius: 2px;
+    box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1),
+                0 0  0 2px rgb(255,255,255),
+                0.3em 0.3em 1em rgba(0,0,0,0.3);
+    box-sizing: border-box;
+    margin-top: 1px;
 }
-.memory-display-button:hover {
-    border: 2px solid #A896CF;
+.tag-form {
+    border: 0px solid black;
 }
+
+
 .memory-edit-link {
     color: #0A1931;
     font-size: 3vh;
@@ -74,15 +129,25 @@
     margin-left: 4vw;
     height: 100vh;
     color: #0A1931;
-    
 }
 
 .memory-display-title {
-    font-size: 5vh;
+    font-size: 6vh;
     font-weight: 600;
 }
+.memory-details-container {
+    display: flex;
+    width: 33vw;
+    justify-content: space-between;
+    box-sizing: border-box;
+    margin-top: 2vh;
+}
+.memory-detail {
+    box-sizing: border-box;
+    /* margin-left: 10px; */
+}
 
-.memory-display-date {
+/* .memory-display-date {
     font-size: 2.3vh;
     box-sizing: border-box;
     margin-left: 3vw;
@@ -96,10 +161,15 @@
     font-size: 2.3vh;
     box-sizing: border-box;
     margin-left: 3vw;
-}
+} */
 
 .memory-display-body {
-    font-size: 2.6vh;
+    width: 85%;
+    font-size: 2.2vh;
+    box-sizing: border-box;
+    margin-top: 3.3vh;
+    text-indent: 2vw;
+    line-height: 1.7;
 }
 
 
