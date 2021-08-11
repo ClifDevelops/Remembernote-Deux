@@ -9,8 +9,8 @@
 .homepage-sidebar {
     grid-column: 1;
     border-right: solid 2px aliceblue;
-    background-color: #0A1931;
-    color: #A896CF;
+    background-color: #49111C;
+    color: #F2F4F3;
     display: grid;
     grid-template-rows: 15vh 15vh 50vh 20vh;
     
@@ -21,15 +21,15 @@
     grid-row: 1;
     box-sizing: border-box;
     margin: 1vw;
-    color: whitesmoke;
+    color: #F2F4F3;
 }
 
 .greeting-link {
-    color: #664c9e;
+    color: #CEC3B8;
     text-decoration: none;
 }
 .greeting-link:visited {
-    color: #664c9e;
+    color: #CEC3B8;
 }
 .greeting-link:hover {
     text-decoration: underline;
@@ -39,7 +39,7 @@
     font-size: 20px;
     box-sizing: border-box;
     margin: 5vw;
-    border:2.5px solid darkgray;
+    border:2.5px solid #F2F4F3;
     width: 15vw;
     height: 4vh;
     grid-row: 2;
@@ -59,18 +59,21 @@
     overflow-y: auto;
 }
 .homepage-tag-button {
-    background-color: #d6cbf0;
+    background-color: #F2F4F3;
     height: 3.2vh;
     font-size: 2.2vh;
     width: 15vw;
     box-sizing: border-box;
     /* margin-left: 5vw; */
     margin-top: .4vh;
-    border: 1px solid #6241b1;
+    border: 1px solid #9E8388;
     border-radius: 3px;
 }
+.homepage-tag-button:hover {
+    background-color: #bb969c;
+}
 .homepage-tag-button:active {
-    background-color: #6241b1;
+    background-color: #854d57;
 }
 .logout-button-container {
     /* left: 5vw; */
@@ -83,13 +86,13 @@
     height: 5vh;
     font-size: 3vh;
     font-family: inherit;
-    background-color: #FFF9EC;
+    background-color: #C8BCBE;
     color: #0A1931;
     border: none;
     border-radius: 5px;
 }
 .logout-button:hover {
-    border: 2px solid #A896CF;
+    border: 2px solid #0A0908;
 }
 
 
@@ -106,4 +109,5 @@
     margin-top: 20px;
     height: 98vh;
     overflow-y: scroll;
+    background-color: #F2F4F3;
 }
