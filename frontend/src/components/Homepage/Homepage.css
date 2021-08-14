@@ -1,6 +1,6 @@
 .homepage-container {
     display: grid;
-    grid-template-columns: 25% 75%;
+    grid-template-columns: 20% 80%;
     min-height: 100vh;
     width: 100%;
     /* background-color: black; */
@@ -9,7 +9,7 @@
 .homepage-sidebar {
     grid-column: 1;
     /* border-right: solid 2px aliceblue; */
-    background-color: #21080D;
+    background-color: #000303;
     color: #F2F4F3;
     display: grid;
     grid-template-rows: 15vh 15vh 50vh 20vh;
@@ -38,9 +38,9 @@
 .memories-search-input {
     font-size: 20px;
     box-sizing: border-box;
-    margin: 2.5vw;
+    margin: .1vw;
     border:2.5px solid #F2F4F3;
-    width: 20vw;
+    width: 19.8vw;
     height: 4vh;
     grid-row: 2;
     text-align: center;
@@ -51,38 +51,39 @@
 .homepage-tags-container {
     display: flex;
     flex-direction: column;
+    /* flex-wrap: wrap; */
     box-sizing: border-box;
     margin-left: 5vw;
     /* align-items: flex-start; */
     width: 15vw;
     grid-row: 3;
     height: 40vh;
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 .homepage-tag-button {
-    background-color: #B6E6F2;
+    background-color: #5fabcc;
     height: 3.2vh;
     font-size: 2.2vh;
-    width: 15vw;
+    width: fit-content;
     box-sizing: border-box;
+    padding: 4px;
     /* margin-left: 5vw; */
-    margin-top: .4vh;
-    border: 1px solid #01BAEF;
-    border-radius: 3px;
-    box-shadow: inset 0 -3em 3em rgba(182, 230, 242,0.1),
-    0.3em 0.3em 1em rgba(182, 230, 242,0.3);
+    margin: 2px;
+    border: none;
+    border-radius: 1px;
+    
 }
 .homepage-tag-button:hover {
-    background-color: #bb969c;
+    background-color: #4091b4;
 }
 .homepage-tag-button:active {
-    background-color: #854d57;
+    background-color: #93b6c4;
 }
 .logout-button-container {
     /* left: 5vw; */
     grid-row: 4;
     box-sizing: border-box;
-    margin-left: 5vw;
+    margin-left: 2.5vw;
 }
 .logout-button {
     width: 15vw;
