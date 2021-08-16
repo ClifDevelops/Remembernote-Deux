@@ -13,15 +13,16 @@ const Homepage = () => {
   const sessionUser = useSelector((state) => state?.session.user);
   const userId = sessionUser?.id
   const dispatch = useDispatch();
-  const [form, setForm] = useState(false)
+  const [form, setForm] = useState(false);
+  const [tagsDisplay, setTagsDisplay] = useState(false)
   useEffect(() => {
         dispatch(setMemories())
         dispatch(setTags(userId))
       }, [dispatch, userId])
   
       
-  const memories = useSelector(state => state?.memories);
-  const tags = useSelector(state => state?.tags)
+  // const memories = useSelector(state => state?.memories);
+  // const tags = useSelector(state => state?.tags)
   
   const [searchTerm, setSearchTerm] = useState("");
   if (!sessionUser){
@@ -34,6 +35,10 @@ const Homepage = () => {
     await dispatch(logoutSession());
   }
 
+  const toggleTags = () => {
+    setTagsDisplay(!tagsDisplay)
+  }
+
   const memoryForm = () => {
     setForm(!form)
   }
@@ -43,7 +48,6 @@ const Homepage = () => {
     <div className="homepage-container">
       <div className='homepage-sidebar'>
         <div className='homepage-greeting'> Hello {sessionUser.username}! </div>
-        <div><button className="homepage-button" onClick={() => memoryForm()}>Record a memory</button></div>
         <input
         className='memories-search-input'
         type="text"
@@ -52,7 +56,14 @@ const Homepage = () => {
           setSearchTerm(e.target.value);
         }}
         />
-        <Tags />
+        <div className="homepage-button-container">
+          <button className="homepage-button" onClick={() => memoryForm()}>Record a memory</button>
+          {tagsDisplay ? (
+          <Tags toggleTags={toggleTags}/>
+          ) : (
+          <button onClick={toggleTags} className='homepage-button'>Display tags</button>
+          )}
+        </div>
         <div className='logout-button-container'><button className='logout-button' onClick={()=>onLogout()}>Logout</button></div>
       </div>
 

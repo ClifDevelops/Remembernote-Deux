@@ -6,7 +6,7 @@ import { setTags} from '../../store/tags';
 
 import './Tags.css';
 
-const Tags = () => {
+const Tags = ({toggleTags}) => {
 
     const sessionUser = useSelector((state) => state?.session.user);
     const userId = sessionUser?.id
@@ -23,6 +23,7 @@ const Tags = () => {
 
     return(
         <div className='homepage-tags-container'>
+        <div><button onClick={toggleTags}>Hide tags</button></div>
         <div>
           <button className='homepage-tag-button' onClick={()=> dispatch(setMemories())}>Show all memories</button>
         </div>
