@@ -1,6 +1,7 @@
 .memory-form-container {
-    margin-left: 200px;
-    margin-top: 50px;
+    /* margin-left: 200px;
+    margin-top: 50px; */
+    grid-column: 2;
 }
 
 .CKEditor-container {

@@ -3,8 +3,10 @@ import { useSelector, useDispatch  } from 'react-redux';
 import { Redirect, NavLink } from "react-router-dom";
 import MemoryList from '../MemoryList';
 import Tags from '../Tags';
+import MemoryForm from '../MemoryForm'
 import { setMemories, logoutMemories } from "../../store/memories";
 import { setTags, logoutTags } from '../../store/tags';
+import { setTextEditor, setMemoryCards, setMemoryContent} from '../../store/mainContent'
 import { logoutSession } from '../../store/session';
 import './Homepage.css';
 
@@ -17,9 +19,12 @@ const Homepage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   
   useEffect(() => {
-        dispatch(setMemories())
-        dispatch(setTags(userId))
-      }, [dispatch, userId])
+    dispatch(setMemories())
+    dispatch(setTags(userId))
+    dispatch(setMemoryCards())
+  }, [dispatch, userId])
+  const mainContent = useSelector((state) => state?.mainContent[0])
+  console.log('here is the main shit', mainContent)
   
   if (!sessionUser){
     return <Redirect to="/" />;
@@ -36,7 +41,8 @@ const Homepage = () => {
   }
 
   const memoryForm = () => {
-    setForm(!form)
+    dispatch(setTextEditor())
+    // setForm(!form)
   }
 
     
@@ -53,6 +59,7 @@ const Homepage = () => {
         }}
         />
         <div className="homepage-button-container">
+          <button className="homepage-button" onClick={() => dispatch(setMemoryCards())}>Show all memories</button>
           <button className="homepage-button" onClick={() => memoryForm()}>Record a memory</button>
           <button onClick={toggleTags} className='homepage-button'>Display tags</button>
         
@@ -64,7 +71,15 @@ const Homepage = () => {
       {tagsDisplay ? (
         <Tags toggleTags={toggleTags} />
       ) : null}
+
+
+      {mainContent === 'cards' || mainContent === undefined ? (
       <MemoryList searchTerm={searchTerm} />
+      ) : 
+      mainContent === 'editor' ?(
+        <MemoryForm />
+      ) : null}
+      
     </div>
   );
 }

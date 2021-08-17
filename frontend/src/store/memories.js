@@ -144,7 +144,7 @@ const memoriesReducer = (state = initialState, action) => {
             return state;
         case SET_MEMORIES:
             action.payload.forEach((memory) => {
-                console.log(memory)
+                // console.log(memory)
                 newState[memory.id] = memory;
             });
             return newState;

@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import sessionReducer from './session';
 import memoriesReducer from "./memories";
 import tagsReducer from './tags';
+import mainContentReducer from './mainContent';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
     memories: memoriesReducer,
-    tags: tagsReducer
+    tags: tagsReducer,
+    mainContent: mainContentReducer
 });
 
 let enhancer;
