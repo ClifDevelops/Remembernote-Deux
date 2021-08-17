@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch  } from 'react-redux';
 import { Redirect, NavLink } from "react-router-dom";
-import MemoryCard from '../MemoryCard';
 import MemoryList from '../MemoryList';
 import Tags from '../Tags';
-import { setMemories, setTaggedMemories, logoutMemories } from "../../store/memories";
+import { setMemories, logoutMemories } from "../../store/memories";
 import { setTags, logoutTags } from '../../store/tags';
 import { logoutSession } from '../../store/session';
 import './Homepage.css';
@@ -15,16 +14,13 @@ const Homepage = () => {
   const dispatch = useDispatch();
   const [form, setForm] = useState(false);
   const [tagsDisplay, setTagsDisplay] = useState(false)
+  const [searchTerm, setSearchTerm] = useState("");
+  
   useEffect(() => {
         dispatch(setMemories())
         dispatch(setTags(userId))
       }, [dispatch, userId])
   
-      
-  // const memories = useSelector(state => state?.memories);
-  // const tags = useSelector(state => state?.tags)
-  
-  const [searchTerm, setSearchTerm] = useState("");
   if (!sessionUser){
     return <Redirect to="/" />;
   } 
@@ -58,15 +54,16 @@ const Homepage = () => {
         />
         <div className="homepage-button-container">
           <button className="homepage-button" onClick={() => memoryForm()}>Record a memory</button>
-          {tagsDisplay ? (
-          <Tags toggleTags={toggleTags}/>
-          ) : (
           <button onClick={toggleTags} className='homepage-button'>Display tags</button>
-          )}
+        
         </div>
-        <div className='logout-button-container'><button className='logout-button' onClick={()=>onLogout()}>Logout</button></div>
+        <div className='logout-button-container'>
+          <button className='logout-button' onClick={()=>onLogout()}>Logout</button>
+        </div>
       </div>
-
+      {tagsDisplay ? (
+        <Tags toggleTags={toggleTags} />
+      ) : null}
       <MemoryList searchTerm={searchTerm} />
     </div>
   );

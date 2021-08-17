@@ -1,0 +1,30 @@
+.homepage-tags-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #48CAE4;
+    flex-wrap: wrap;
+    grid-column: 2;
+    overflow-y: scroll;
+    background-image: url('../../images/blue-clouds.jpeg');
+    background-size: cover;
+}
+.homepage-tag-button {
+    background-color: #CAF0F8;
+    height: 3.2vh;
+    font-size: 2.2vh;
+    width: fit-content;
+    box-sizing: border-box;
+    padding: 4px;
+    margin: 2px;
+    border: none;
+    border-radius: 4px;
+    
+}
+.homepage-tag-button:hover {
+    background-color: #4091b4;
+}
+.homepage-tag-button:active {
+    background-color: #93b6c4;
+}
