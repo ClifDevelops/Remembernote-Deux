@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch  } from 'react-redux';
 import { Redirect, NavLink } from "react-router-dom";
-import MemoryCard from '../MemoryCard';
-import { setMemories, setTaggedMemories, logoutMemories } from "../../store/memories";
+import MemoryList from '../MemoryList';
+import Tags from '../Tags';
+import MemoryForm from '../MemoryForm'
+import { setMemories, logoutMemories } from "../../store/memories";
 import { setTags, logoutTags } from '../../store/tags';
+import { setTextEditor, setMemoryCards, setMemoryContent} from '../../store/mainContent'
 import { logoutSession } from '../../store/session';
 import './Homepage.css';
 
@@ -11,33 +14,42 @@ const Homepage = () => {
   const sessionUser = useSelector((state) => state?.session.user);
   const userId = sessionUser?.id
   const dispatch = useDispatch();
-  useEffect(() => {
-        dispatch(setMemories())
-        dispatch(setTags(userId))
-      }, [dispatch, userId])
+  const [form, setForm] = useState(false);
+  const [tagsDisplay, setTagsDisplay] = useState(false)
+  const [searchTerm, setSearchTerm] = useState("");
   
+  useEffect(() => {
+    dispatch(setMemories())
+    dispatch(setTags(userId))
+    dispatch(setMemoryCards())
+  }, [dispatch, userId])
+  const mainContent = useSelector((state) => state?.mainContent[0])
+  console.log('here is the main shit', mainContent)
+  
+  if (!sessionUser){
+    return <Redirect to="/" />;
+  } 
       
-      const memories = useSelector(state => state?.memories);
-      const tags = useSelector(state => state?.tags)
-      
-      const [searchTerm, setSearchTerm] = useState("");
-      if (!sessionUser){
-        return <Redirect to="/" />;
-      } 
-      
-      const onLogout = async () => {
-        await dispatch(logoutMemories());
-        await dispatch(logoutTags());
-        await dispatch(logoutSession());
-      }
+  const onLogout = async () => {
+    await dispatch(logoutMemories());
+    await dispatch(logoutTags());
+    await dispatch(logoutSession());
+  }
+
+  const toggleTags = () => {
+    setTagsDisplay(!tagsDisplay)
+  }
+
+  const memoryForm = () => {
+    dispatch(setTextEditor())
+    // setForm(!form)
+  }
 
     
   return (
     <div className="homepage-container">
       <div className='homepage-sidebar'>
-        <div className='homepage-greeting'> Hello {sessionUser.username}! 
-        Go ahead and <NavLink className='greeting-link' to='memoryForm'>record another memory!</NavLink>
-        </div>
+        <div className='homepage-greeting'> Hello {sessionUser.username}! </div>
         <input
         className='memories-search-input'
         type="text"
@@ -46,42 +58,28 @@ const Homepage = () => {
           setSearchTerm(e.target.value);
         }}
         />
-        <div className='homepage-tags-container'>
-        <div>
-          <button className='homepage-tag-button' onClick={()=> dispatch(setMemories())}>Show all memories</button>
+        <div className="homepage-button-container">
+          <button className="homepage-button" onClick={() => dispatch(setMemoryCards())}>Show all memories</button>
+          <button className="homepage-button" onClick={() => memoryForm()}>Record a memory</button>
+          <button onClick={toggleTags} className='homepage-button'>Display tags</button>
+        
         </div>
-        {Object.values(tags)
-        .map((tag) => {
-          return (
-            <button className='homepage-tag-button' key={tag?.id} onClick={()=> dispatch(setTaggedMemories(tag?.id))}>{tag?.tagName}</button>
-          )
-        })}
+        <div className='logout-button-container'>
+          <button className='logout-button' onClick={()=>onLogout()}>Logout</button>
         </div>
-        <div className='logout-button-container'><button className='logout-button' onClick={()=>onLogout()}>Logout</button></div>
       </div>
+      {tagsDisplay ? (
+        <Tags toggleTags={toggleTags} />
+      ) : null}
 
-      <div className="memory-list-container">
-        {Object.values(memories)
-        .filter((memory) => {
-        if (searchTerm === "") {
-          return memory;
-        } else if (
-          memory?.title
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase()) ||
-            memory?.dateOfMemory
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase())
-          
-        ) {
-          return memory;
-        }
-      }).map((memory) => {
-          return (
-            <MemoryCard key={memory.id} memory={memory} />
-          );
-        })}
-      </div>
+
+      {mainContent === 'cards' || mainContent === undefined ? (
+      <MemoryList searchTerm={searchTerm} />
+      ) : 
+      mainContent === 'editor' ?(
+        <MemoryForm />
+      ) : null}
+      
     </div>
   );
 }

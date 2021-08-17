@@ -5,6 +5,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import "./MemoryForm.css";
 import {createMemory} from "../../store/memories"
+import { setMemoryCards } from "../../store/mainContent";
 
 
 
@@ -49,7 +50,7 @@ const MemoryForm = () => {
           setLocation("");
           setMemoryRating(5);
           setBody("");
-          history.push(`/homepage`)
+          dispatch(setMemoryCards())
         }
       }
 
@@ -57,9 +58,8 @@ const MemoryForm = () => {
 
       
     return (
-      <>
-      <button className="to-home-memory-button" onClick={headHome}>Head Back Home</button>
-      <section className="memory-form-container">
+      <div className='memory-form-container'>
+      {/* <button className="to-home-memory-button" onClick={headHome}>Head Back Home</button> */}
         <form onSubmit={handleSubmit} id="memory-form" className="memory-form">
           <input
             type="text"
@@ -108,8 +108,7 @@ const MemoryForm = () => {
           </div>
           <button type="submit" className="memory-form-button">Store your memory!</button>
         </form>
-      </section>
-      </>
+      </div>
     );
 
 }
