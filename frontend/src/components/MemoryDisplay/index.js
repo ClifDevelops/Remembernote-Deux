@@ -8,8 +8,8 @@ import "./MemoryDisplay.css"
 
 
 
-const MemoryDisplay = () => {
-    const {memoryId} = useParams();
+const MemoryDisplay = ({memoryId}) => {
+    // const {memoryId} = useParams();
     const dispatch = useDispatch();
 
     useEffect(() => {
