@@ -59,7 +59,6 @@ const MemoryForm = () => {
       
     return (
       <div className='memory-form-container'>
-      {/* <button className="to-home-memory-button" onClick={headHome}>Head Back Home</button> */}
         <form onSubmit={handleSubmit} id="memory-form" className="memory-form">
           <input
             type="text"

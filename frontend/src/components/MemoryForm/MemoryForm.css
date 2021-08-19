@@ -1,24 +1,66 @@
 .memory-form-container {
-    /* margin-left: 200px;
-    margin-top: 50px; */
-    grid-column: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../../images/writing-quill.png');
+    /* background-size: 80%; */
+    background-repeat: cover;
+    height: 100vh;
+    
+
+}
+.memory-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 800px;
+    box-sizing: border-box;
+}
+.memory-input {
+    font-size: 18px;
+    width: 70%;
+    box-sizing: border-box;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    text-align: center;
+}
+.memory-input:focus {
+    outline: 0;
 }
 
 .CKEditor-container {
     width: 800px;
     font-family: inherit;
-    /* height: 200px; */
+}
+.CKEditor-container:focus {
+    outline: 0;
 }
 
 .ck-editor__editable_inline {
     font-family: inherit;
     min-height: 400px;
     color: black;
+    outline: 0;
+}
+.ck-editor__editable_inline:focus {
+    outline: 0;
 }
 
 .memory-form-button {
+    width: 15vw;
+    height: 5vh;
+    font-size: 16px;
     font-family: inherit;
+    background-color: #1FAD39;
+    color: whitesmoke;
+    border: none;
+    border-radius: 20px;
+    box-sizing: border-box;
+    margin-top: 5px;
     /* margin-top: 300px; */
+}
+.memory-form-button:hover {
+    background-color: #187e2b;
 }
 
 .memory-input {

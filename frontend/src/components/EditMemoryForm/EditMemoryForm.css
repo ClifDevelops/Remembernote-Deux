@@ -1,0 +1,18 @@
+.edit-to-home-button {
+    position:fixed;
+    left: 10px;
+    top: 10px;
+    width: 15vw;
+    height: 5vh;
+    font-size: 16px;
+    font-family: inherit;
+    background-color: #1FAD39;
+    color: whitesmoke;
+    border: none;
+    border-radius: 20px;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+.edit-to-home-button:hover {
+    background-color: #187e2b;
+}
