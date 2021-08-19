@@ -9,7 +9,6 @@ import "./MemoryDisplay.css"
 
 
 const MemoryDisplay = ({memoryId}) => {
-    // const {memoryId} = useParams();
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -74,6 +73,15 @@ const MemoryDisplay = ({memoryId}) => {
 
     return (
       <div className="memory-display">
+        <div className='memory-display-container'>
+          <div className="memory-display-title">{memory?.title}</div>
+          <div className='memory-details-container'>
+            <div className="memory-detail">{memory?.dateOfMemory}</div>
+            <div className="memory-detail">{memory?.location}</div>
+            <div className="memory-detail">Memory Rating: {memory?.memoryRating}</div>
+          </div>
+          <div className="memory-display-body">{ReactHtmlParser(memory?.body)}</div>
+        </div>
         <div className='memory-display-navigation'>
           <div className='memory-nav-button-container'>
           <button className="memory-display-button" onClick={headHome}>
@@ -112,15 +120,6 @@ const MemoryDisplay = ({memoryId}) => {
             )
             }
           </div>
-        </div>
-        <div className='memory-display-container'>
-          <div className="memory-display-title">{memory?.title}</div>
-          <div className='memory-details-container'>
-            <div className="memory-detail">{memory?.dateOfMemory}</div>
-            <div className="memory-detail">{memory?.location}</div>
-            <div className="memory-detail">Memory Rating: {memory?.memoryRating}</div>
-          </div>
-          <div className="memory-display-body">{ReactHtmlParser(memory?.body)}</div>
         </div>
       </div>
     );

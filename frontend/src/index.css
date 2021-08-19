@@ -1,9 +1,9 @@
 /* TODO Add site wide styles */
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
 body {
     margin: 0 !important;
     background-color: #fafafa;
     color: #0A0908 ;
-    font-family: 'Lora', serif;
+    font-family: 'Nanum Gothic', sans-serif;
     width: 100vw;
 }

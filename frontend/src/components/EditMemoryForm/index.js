@@ -61,7 +61,7 @@ const EditMemoryForm = () => {
       
     return (
       <>
-      <button className="to-home-memory-button" onClick={headHome}>Head Back Home</button>
+      <button className="edit-to-home-button" onClick={headHome}>Head Back Home</button>
       <section className="memory-form-container">
         <form onSubmit={handleSubmit} id="memory-form" className="memory-form">
           <input

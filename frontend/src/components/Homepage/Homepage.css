@@ -3,12 +3,10 @@
     grid-template-columns: 17% 83%;
     min-height: 100vh;
     width: 100%;
-    /* background-color: black; */
 }
 
 .homepage-sidebar {
     grid-column: 1;
-    /* border-right: solid 2px aliceblue; */
     background-color: #000303;
     color: #F2F4F3;
     display: grid;
@@ -17,14 +15,14 @@
 }
 
 .homepage-greeting {
-    font-size: 20px;
+    font-size: 26px;
     grid-row: 1;
     box-sizing: border-box;
     margin: 1vw;
     color: #F2F4F3;
 }
 
-.greeting-link {
+/* .greeting-link {
     color: #CEC3B8;
     text-decoration: none;
 }
@@ -33,7 +31,7 @@
 }
 .greeting-link:hover {
     text-decoration: underline;
-}
+} */
 
 .memories-search-input {
     font-size: 20px;
@@ -59,17 +57,15 @@
     box-sizing: border-box;
     padding: 5%;
 }
-/* .homepage-button-container > div:focus {
-    width: 16vw;
-    background-color: rgba(141, 141, 146, 0.85);
-} */
+
 .homepage-button {
     color:whitesmoke;
     background-color: #000303;
     border: none;
-    font-size: 18px;
+    font-size: 22px;
+    font-family: inherit;
     box-sizing: border-box;
-    margin-top: 6px;
+    margin-top: 10px;
     width: 16vw;
     text-align:start;
 }
