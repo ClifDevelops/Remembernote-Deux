@@ -62,9 +62,9 @@ const Homepage = () => {
         }}
         />
         <div className="homepage-button-container">
-          <button className="homepage-button" onClick={() => dispatch(setMemoryCards())}>Show all memories</button>
-          <button className="homepage-button" onClick={() => memoryForm()}>Record a memory</button>
-          <button onClick={toggleTags} className='homepage-button'>Display tags</button>
+          <div><button className="homepage-button" onClick={() => dispatch(setMemoryCards())}>Show all memories</button></div>
+          <div><button className="homepage-button" onClick={() => memoryForm()}>Record a memory</button></div>
+          <div><button className='homepage-button' onClick={toggleTags} >Display tags</button></div>
         
         </div>
         <div className='logout-button-container'>
