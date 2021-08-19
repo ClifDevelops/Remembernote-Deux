@@ -1,6 +1,6 @@
 .homepage-container {
     display: grid;
-    grid-template-columns: 25% 75%;
+    grid-template-columns: 17% 83%;
     min-height: 100vh;
     width: 100%;
     /* background-color: black; */
@@ -12,12 +12,12 @@
     background-color: #000303;
     color: #F2F4F3;
     display: grid;
-    grid-template-rows: 15vh 15vh 50vh 20vh;
+    grid-template-rows: 15vh 15vh 10vh 35vh 5vh;
     
 }
 
 .homepage-greeting {
-    font-size: 30px;
+    font-size: 20px;
     grid-row: 1;
     box-sizing: border-box;
     margin: 1vw;
@@ -38,9 +38,10 @@
 .memories-search-input {
     font-size: 20px;
     box-sizing: border-box;
-    margin: .1vw;
-    border:2.5px solid #F2F4F3;
-    width: 19.8vw;
+    margin: 3.3%;
+    border: none;
+    border-radius: 20px;
+    width: 90%;
     height: 4vh;
     grid-row: 2;
     text-align: center;
@@ -49,60 +50,50 @@
     outline: 0;
 }
 .homepage-button-container {
-    grid-row: 3;
-    display: flex;
-    flex-direction: column;
-}
-/* .homepage-tags-container {
-    display: flex;
-    flex-direction: column;
-   
-    box-sizing: border-box;
-    margin-left: 5vw;
-  
-    width: 15vw;
-    grid-column: 2;
-    grid-row: 3;
-    height: 40vh;
-    overflow-y: scroll;
-}
-.homepage-tag-button {
-    background-color: #5fabcc;
-    height: 3.2vh;
-    font-size: 2.2vh;
-    width: fit-content;
-    box-sizing: border-box;
-    padding: 4px;
-    
-    margin: 2px;
-    border: none;
-    border-radius: 1px;
-    
-} */
-.homepage-tag-button:hover {
-    background-color: #4091b4;
-}
-.homepage-tag-button:active {
-    background-color: #93b6c4;
-}
-.logout-button-container {
-    /* left: 5vw; */
     grid-row: 4;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    justify-content: flex-start;
+    width: 100%;
     box-sizing: border-box;
-    margin-left: 2.5vw;
+    padding: 5%;
+}
+/* .homepage-button-container > div:focus {
+    width: 16vw;
+    background-color: rgba(141, 141, 146, 0.85);
+} */
+.homepage-button {
+    color:whitesmoke;
+    background-color: #000303;
+    border: none;
+    font-size: 18px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    width: 16vw;
+    text-align:start;
+}
+.homepage-button:focus {
+    background-color: rgba(141, 141, 146, 0.85);
+}
+
+.logout-button-container {    
+    grid-row: 5;
+    box-sizing: border-box;
+    margin-left: 7%;
 }
 .logout-button {
     width: 15vw;
     height: 5vh;
     font-size: 3vh;
     font-family: inherit;
-    background-color: #C8BCBE;
-    color: #0A1931;
+    background-color: #1FAD39;
+    color: whitesmoke;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
 }
 .logout-button:hover {
-    border: 2px solid #0A0908;
+    background-color: #187e2b;
 }
 
 
