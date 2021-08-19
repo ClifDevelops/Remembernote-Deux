@@ -14,26 +14,30 @@ export const setMemoryCards = () => {
         type: SET_CARDS
     }
 }
-export const setMemoryContent = () => {
+export const setMemoryContent = (id) => {
     return {
-        type: SET_CONTENT
+        type: SET_CONTENT,
+        payload: id
     }
 }
 
 
 
-const initialState = {};
+const initialState = {setting: '', memoryId: 1};
 const mainContentReducer = (state = initialState, action) => {
-    let newState = [];
+    let newState = {};
     switch(action.type) {
         case SET_EDITOR:
-            newState.push('editor');
+            newState.setting = 'editor';
+            newState.memoryId = 0;
             return newState;
         case SET_CARDS:
-            newState.push('cards');
+            newState.setting = 'cards';
+            newState.memoryId = 0;
             return newState;
         case SET_CONTENT:
-            newState.push('content');
+            newState.setting = 'content';
+            newState.memoryId = action.payload
             return newState;
         default:
             return state;

@@ -9,6 +9,7 @@ import { setTags, logoutTags } from '../../store/tags';
 import { setTextEditor, setMemoryCards, setMemoryContent} from '../../store/mainContent'
 import { logoutSession } from '../../store/session';
 import './Homepage.css';
+import MemoryDisplay from '../MemoryDisplay';
 
 const Homepage = () => {
   const sessionUser = useSelector((state) => state?.session.user);
@@ -23,8 +24,10 @@ const Homepage = () => {
     dispatch(setTags(userId))
     dispatch(setMemoryCards())
   }, [dispatch, userId])
-  const mainContent = useSelector((state) => state?.mainContent[0])
+  const mainContent = useSelector((state) => state?.mainContent?.setting)
+  const memoryId = useSelector((state) => state?.mainContent?.memoryId)
   console.log('here is the main shit', mainContent)
+  console.log(memoryId)
   
   if (!sessionUser){
     return <Redirect to="/" />;
@@ -42,7 +45,7 @@ const Homepage = () => {
 
   const memoryForm = () => {
     dispatch(setTextEditor())
-    // setForm(!form)
+    
   }
 
     
@@ -78,6 +81,9 @@ const Homepage = () => {
       ) : 
       mainContent === 'editor' ?(
         <MemoryForm />
+      ) : 
+      mainContent === 'content' && memoryId !== 0 ?(
+        <MemoryDisplay memoryId={memoryId}/>
       ) : null}
       
     </div>
