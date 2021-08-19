@@ -68,6 +68,7 @@
     background-color: #000303;
     border: none;
     font-size: 18px;
+    font-family: inherit;
     box-sizing: border-box;
     margin-top: 6px;
     width: 16vw;
