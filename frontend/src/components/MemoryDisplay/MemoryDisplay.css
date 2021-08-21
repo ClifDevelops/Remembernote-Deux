@@ -144,6 +144,12 @@
 .memory-detail {
     box-sizing: border-box;
 }
+.memory-display-image {
+    height: auto;
+    max-width: 400px;
+    margin: 30px;
+    border-radius: 5px;
+}
 
 
 .memory-display-body {

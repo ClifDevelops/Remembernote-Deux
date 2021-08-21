@@ -69,12 +69,21 @@ export const logoutMemories = () => async (dispatch) => {
 };
 
 export const createMemory = payload => async dispatch => {
+    const {title, dateOfMemory, location, memoryRating, image, body, userId} = payload;
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('dateOfMemory', dateOfMemory);
+    formData.append('location', location);
+    formData.append('memoryRating', memoryRating);
+    formData.append('body', body);
+    formData.append('userId', userId);
+    if (image) formData.append("image", image);
     const response = await csrfFetch(`/api/memories`, {
         method: 'post',
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': "multipart/form-data",
         },
-        body: JSON.stringify(payload)
+        body: formData
     });
 
     if (response.ok) {

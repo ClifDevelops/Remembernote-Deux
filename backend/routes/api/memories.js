@@ -5,6 +5,7 @@ const { setTokenCookie, requireAuth, getCurrentUserId } = require("../../utils/a
 const { User, Memory, Tag, MemoryTag } = require("../../db/models");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
+const { singlePublicFileUpload, SingleMulterUpload, singleMulterUpload} = require('../../awsS3')
 
 const router = express.Router();
 
@@ -60,10 +61,12 @@ asyncHandler(async function (req, res) {
 
 router.get("/",
     requireAuth,
+    
     asyncHandler(async function (req, res) {
       // Here we are going to get the user's id and find all of the memories on the memories table
       // that are attached to that user's id.
       const currentUserId = await getCurrentUserId(req);
+      
       const memories = await Memory.findAll({
         where: {
           userId: currentUserId,
@@ -85,15 +88,18 @@ router.get("/",
 
 router.post(
     "/",
+    singleMulterUpload('image'),
     requireAuth,
     validateMemory,
     asyncHandler(async function (req, res) {
       const {title, dateOfMemory, location, memoryRating, body, userId} = req.body;
+      const pictureUrl =  await singlePublicFileUpload(req.file);
       const memory = await Memory.create({
         title,
         dateOfMemory,
         location,
         memoryRating,
+        pictureUrl,
         body,
         userId
       });
