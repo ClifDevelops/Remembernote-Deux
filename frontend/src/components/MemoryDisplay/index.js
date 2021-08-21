@@ -80,13 +80,17 @@ const MemoryDisplay = ({memoryId}) => {
             <div className="memory-detail">{memory?.location}</div>
             <div className="memory-detail">Memory Rating: {memory?.memoryRating}</div>
           </div>
+          {memory?.pictureUrl ? (
+            <img src={memory.pictureUrl} alt='memory' className='memory-display-image'/>
+
+          ) : null}
           <div className="memory-display-body">{ReactHtmlParser(memory?.body)}</div>
         </div>
         <div className='memory-display-navigation'>
           <div className='memory-nav-button-container'>
-          <button className="memory-display-button" onClick={headHome}>
+          {/* <button className="memory-display-button" onClick={headHome}>
             Home
-          </button>
+          </button> */}
           <button className="memory-display-button" onClick={editMemory}>
             Edit
           </button>

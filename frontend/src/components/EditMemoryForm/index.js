@@ -21,12 +21,16 @@ const EditMemoryForm = () => {
     const [location, setLocation] = useState(memory?.location);
     const [memoryRating, setMemoryRating] = useState(memory?.memoryRating);
     const [body, setBody] = useState(memory?.body);
+    const [image, setImage] = useState(null)
     
     const updateTitle = (e) => setTitle(e.target.value);
     const updateDateOfMemory = (e) => setDateOfMemory(e.target.value);
     const updateLocation = (e) => setLocation(e.target.value);
     const updateMemoryRating = (e) => setMemoryRating(e.target.value);
-    
+    const updateFile = (e) => {
+      const file = e.target.files[0];
+      if (file) setImage(file);
+    };
 
     const headHome = () => {
       history.push('/homepage')
@@ -40,6 +44,7 @@ const EditMemoryForm = () => {
             dateOfMemory,
             location,
             memoryRating,
+            image,
             body,
             userId,
             memoryId
@@ -96,6 +101,10 @@ const EditMemoryForm = () => {
             onChange={updateMemoryRating}
             className="memory-input"
           />
+          {memory?.pictureUrl ? (
+            <img src={memory.pictureUrl} alt='memory' class='memory-form-image-display' />
+          ) : null}
+          <input type='file' onChange={updateFile} />
           <div className='CKEditor-container'>
             <CKEditor
                 editor={ClassicEditor}
