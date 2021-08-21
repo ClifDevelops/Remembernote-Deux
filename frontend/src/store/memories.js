@@ -93,13 +93,23 @@ export const createMemory = payload => async dispatch => {
     }
 }
 
-export const updateMemory = data => async dispatch => {
+export const updateMemory = payload => async dispatch => {
+    const {title, dateOfMemory, location, memoryRating, image, body, userId, memoryId} = payload;
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('dateOfMemory', dateOfMemory);
+    formData.append('location', location);
+    formData.append('memoryRating', memoryRating);
+    formData.append('body', body);
+    formData.append('userId', userId);
+    formData.append('memoryId', memoryId);
+    if (image) formData.append("image", image);
     const response = await csrfFetch(`/api/memories/edit`, {
         method: 'post',
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': "multipart/form-data",
         },
-        body: JSON.stringify(data)
+        body: formData
     });
 
     if (response.ok) {

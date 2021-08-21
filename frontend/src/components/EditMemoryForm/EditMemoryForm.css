@@ -16,3 +16,8 @@
 .edit-to-home-button:hover {
     background-color: #187e2b;
 }
+
+.memory-form-image-display {
+    height: auto;
+    width: 100px;
+}

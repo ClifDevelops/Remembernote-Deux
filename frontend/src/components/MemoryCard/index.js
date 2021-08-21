@@ -12,6 +12,9 @@ function MemoryCard({memory}) {
         <div className="single-memory-container">
             <div onClick={() => dispatch(setMemoryContent(memory?.id))} className='memory-box-title'>{memory?.title}</div>
             <div className='memory-box-date'>{memory?.dateOfMemory}</div>
+            {memory?.pictureUrl ? (
+                <img src={memory.pictureUrl} alt='memory' className='memory-box-picture' />
+            ): null}
         </div>
 
     )

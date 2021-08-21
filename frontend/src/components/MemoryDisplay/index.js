@@ -88,9 +88,9 @@ const MemoryDisplay = ({memoryId}) => {
         </div>
         <div className='memory-display-navigation'>
           <div className='memory-nav-button-container'>
-          <button className="memory-display-button" onClick={headHome}>
+          {/* <button className="memory-display-button" onClick={headHome}>
             Home
-          </button>
+          </button> */}
           <button className="memory-display-button" onClick={editMemory}>
             Edit
           </button>

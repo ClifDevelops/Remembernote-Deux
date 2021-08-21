@@ -71,7 +71,7 @@ router.get("/",
         where: {
           userId: currentUserId,
         },
-        attributes: ['id','title', 'dateOfMemory'],
+        attributes: ['id','title', 'dateOfMemory', 'pictureUrl'],
         order:[["dateOfMemory", "desc"]],
         include: [{
           model: Tag,
@@ -93,28 +93,60 @@ router.post(
     validateMemory,
     asyncHandler(async function (req, res) {
       const {title, dateOfMemory, location, memoryRating, body, userId} = req.body;
-      const pictureUrl =  await singlePublicFileUpload(req.file);
+      //Picture isn't required, so there is a conditional to deal with if it does exist, otherwise post without picture.
+      if (req.file){
+        const pictureUrl =  await singlePublicFileUpload(req.file);
+        const memory = await Memory.create({
+          title,
+          dateOfMemory,
+          location,
+          memoryRating,
+          pictureUrl,
+          body,
+          userId
+        });
+        res.json(memory);
+      }
+
       const memory = await Memory.create({
         title,
         dateOfMemory,
         location,
         memoryRating,
-        pictureUrl,
         body,
         userId
       });
       res.json(memory);
+
   
     })
   )
 
   router.post(
     "/edit",
+    singleMulterUpload('image'),
     requireAuth,
     validateMemory,
     asyncHandler(async function (req, res) {
       const {title, dateOfMemory, location, memoryRating, body, userId, memoryId} = req.body;
       const parsedId = parseInt(memoryId, 10);
+
+      if (req.file){
+        const pictureUrl =  await singlePublicFileUpload(req.file);
+        const memoryToUpdate = await Memory.findByPk(parsedId);
+        await memoryToUpdate.update({
+          title,
+          dateOfMemory,
+          location,
+          memoryRating,
+          pictureUrl,
+          body,
+          userId
+        });
+        res.json(memoryToUpdate);
+      }
+
+      
       const memoryToUpdate = await Memory.findByPk(parsedId);
       await memoryToUpdate.update({
         title,

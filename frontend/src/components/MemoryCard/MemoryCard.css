@@ -1,11 +1,13 @@
 .single-memory-container{
     width: 30%;
     min-height: 12vh;
+    max-height: 12vh;
     box-sizing: border-box;
     margin: 6px;
     padding: 5px;
     display: grid;
     grid-template-rows: 70% 30%;
+    grid-template-columns: 70% 30%;
     border-radius: 4px;
     color: #0A0908;
     overflow: hidden;
@@ -14,10 +16,25 @@
 }
 .memory-box-title {
     grid-row: 1;
-    font-size: 22px;
+    grid-column: 1;
+    font-size: 18px;
     font-weight: 700;
 }
 .memory-box-date {
     grid-row: 2;
+    grid-column: 1;
     font-size: 14px;
+}
+.memory-box-picture {
+    height: 10vh;
+    /* width: auto; */
+    grid-column: 2;
+    grid-row-start: 0;
+    grid-row-end: 2;
+    box-sizing: border-box;
+    margin-top: 2px;
+    border-radius: 10px;
+    position: relative;
+    left: 40%;
+    aspect-ratio: 3 / 4;
 }

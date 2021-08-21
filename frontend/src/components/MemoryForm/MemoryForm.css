@@ -5,7 +5,7 @@
     background-image: url('../../images/writing-quill.png');
     /* background-size: 80%; */
     background-repeat: cover;
-    height: 100vh;
+    min-height: 100vh;
     
 
 }
@@ -39,6 +39,8 @@
 .ck-editor__editable_inline {
     font-family: inherit;
     min-height: 400px;
+    max-height: 550px;
+    overflow-y: scroll;
     color: black;
     outline: 0;
 }
