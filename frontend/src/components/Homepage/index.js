@@ -15,7 +15,7 @@ const Homepage = () => {
   const sessionUser = useSelector((state) => state?.session.user);
   const userId = sessionUser?.id
   const dispatch = useDispatch();
-  const [form, setForm] = useState(false);
+  // const [form, setForm] = useState(false);
   const [tagsDisplay, setTagsDisplay] = useState(false)
   const [searchTerm, setSearchTerm] = useState("");
   
@@ -24,10 +24,10 @@ const Homepage = () => {
     dispatch(setTags(userId))
     dispatch(setMemoryCards())
   }, [dispatch, userId])
+  
   const mainContent = useSelector((state) => state?.mainContent?.setting)
   const memoryId = useSelector((state) => state?.mainContent?.memoryId)
-  console.log('here is the main shit', mainContent)
-  console.log(memoryId)
+  
   
   if (!sessionUser){
     return <Redirect to="/" />;
@@ -41,11 +41,17 @@ const Homepage = () => {
 
   const toggleTags = () => {
     setTagsDisplay(!tagsDisplay)
+    // dispatch(setMemoryCards())
   }
 
   const memoryForm = () => {
     dispatch(setTextEditor())
-    
+  }
+
+  const showAllMemories = async () => {
+    // await dispatch(setTags(userId));
+    dispatch(setMemories())
+    dispatch(setMemoryCards())
   }
 
     
@@ -62,7 +68,7 @@ const Homepage = () => {
         }}
         />
         <div className="homepage-button-container">
-          <div><button className="homepage-button" onClick={() => dispatch(setMemoryCards())}>Show all memories</button></div>
+          <div><button className="homepage-button" onClick={showAllMemories}>Show all memories</button></div>
           <div><button className="homepage-button" onClick={() => memoryForm()}>Record a memory</button></div>
           <div><button className='homepage-button' onClick={toggleTags} >Display tags</button></div>
         
