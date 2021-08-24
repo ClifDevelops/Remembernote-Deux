@@ -46,12 +46,14 @@ const Homepage = () => {
 
   const memoryForm = () => {
     dispatch(setTextEditor())
+    setTagsDisplay(false)
   }
 
   const showAllMemories = async () => {
     // await dispatch(setTags(userId));
     dispatch(setMemories())
     dispatch(setMemoryCards())
+    setTagsDisplay(false)
   }
 
     

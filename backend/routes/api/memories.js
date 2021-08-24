@@ -105,18 +105,22 @@ router.post(
           body,
           userId
         });
-        res.json(memory);
+       return res.json(memory);
+        
+      } else {
+        const memory = await Memory.create({
+          title,
+          dateOfMemory,
+          location,
+          memoryRating,
+          body,
+          userId
+        });
+        return res.json(memory);
+
       }
 
-      const memory = await Memory.create({
-        title,
-        dateOfMemory,
-        location,
-        memoryRating,
-        body,
-        userId
-      });
-      res.json(memory);
+       
 
   
     })
