@@ -27,8 +27,8 @@ const Splash = () => {
             </div>
             <div className='splash-text'> Remembernote is a site designed to help you record your life one memory at a time! Tag and date your memories, add pictures if you please, and ultimately have an easily searchable, private journal of your life!</div>
             <div className='splash-links-container'>
-                <NavLink className='splash-links' to='/login'>Login Here</NavLink>
-                <NavLink className='splash-links' to='/signup'>Signup Here</NavLink>
+                <NavLink className='splash-links' to='/login'>Login</NavLink>
+                <NavLink className='splash-links' to='/signup'>Signup</NavLink>
                 <div><button className='demo-login-button' onClick={demoLogin}>Demo Login</button></div>
             </div>
             

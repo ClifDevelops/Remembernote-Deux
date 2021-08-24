@@ -20,7 +20,8 @@ const MemoryForm = () => {
     const [location, setLocation] = useState("");
     const [memoryRating, setMemoryRating] = useState(5);
     const [body, setBody] = useState("");
-    const [image, setImage] = useState(null)
+    const [image, setImage] = useState(null);
+    const [disabled, setDisabled] = useState(false)
     
     const updateTitle = (e) => setTitle(e.target.value);
     const updateDateOfMemory = (e) => setDateOfMemory(e.target.value);
@@ -31,12 +32,13 @@ const MemoryForm = () => {
       const file = e.target.files[0];
       if (file) setImage(file);
     };
-    const headHome = () => {
-      history.push('/homepage')
-    }
+    // const headHome = () => {
+    //   history.push('/homepage')
+    // }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setDisabled(true)
 
         const payload = {
             title,
@@ -111,7 +113,7 @@ const MemoryForm = () => {
                 }}
                 />
           </div>
-          <button type="submit" className="memory-form-button">Store your memory!</button>
+          <button type="submit" className="memory-form-button" disabled={disabled}>Store your memory!</button>
         </form>
       </div>
     );
