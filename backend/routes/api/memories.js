@@ -72,11 +72,12 @@ router.get("/",
           userId: currentUserId,
         },
         attributes: ['id','title', 'dateOfMemory', 'pictureUrl'],
-        order:[["dateOfMemory", "desc"]],
+        // order:[["dateOfMemory", "desc"]],
         include: [{
           model: Tag,
           through: {attributes:[]}
-        }]
+        }],
+        limit: 20
       });
       
       // Send those memories to be set to the Redux store.

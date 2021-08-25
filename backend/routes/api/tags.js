@@ -13,6 +13,8 @@ router.get(
   requireAuth,
   asyncHandler(async function (req, res) {
     const {tagId} =  req.params;
+    const currentUserId = await getCurrentUserId(req);
+    console.log('here is the user id', currentUserId)
     const memoryTags = await MemoryTag.findAll({
       where: {
         tagId
@@ -27,11 +29,14 @@ router.get(
         let memoryId = memoryTags[i].dataValues.memoryId;
         let memory = await Memory.findOne({
           where: {
-            id: memoryId
+            id: memoryId,
+            userId: currentUserId
           },
           attributes: ['id','title', 'dateOfMemory', 'pictureUrl'],
         })
-        memories.push(memory)
+        if (memory){
+          memories.push(memory)
+        }
       }
     }
     await memoryFinder()
@@ -60,7 +65,8 @@ router.get(
 
 
 
-
+// Needed to refactor this route to allow for duplicate tags across users but no duplicates
+// for the same user. This was because of how I load up the tags on my get route.
 router.post(
     "/",
     requireAuth,
@@ -69,9 +75,12 @@ router.post(
       const {memoryId, userId} = req.body
       // const memory = await Memory.findByPk(memoryId)
       
-      // Check if the tag currently exists; no need for duplicates.
+      // Check if the tag currently exists; no need for duplicates by the same user
       const existingTag = await Tag.findOne({
-        where: {tagName: tagName}
+        where: {
+          tagName,
+          userId
+        },
       })
       // If it doesn't exist, let's add an entry to the tags table 
       if (!existingTag){
