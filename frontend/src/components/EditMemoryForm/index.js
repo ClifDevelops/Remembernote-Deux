@@ -57,7 +57,7 @@ const EditMemoryForm = () => {
           setLocation("");
           setMemoryRating(5);
           setBody("");
-          history.push(`/memories/${memoryId}`)
+          history.push(`/homepage`)
         }
       }
 

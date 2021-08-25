@@ -65,7 +65,6 @@ const MemoryDisplay = ({memoryId, setTagsDisplay}) => {
         tagId,
         memoryId
       }
-      console.log("string" && "string")
       await dispatch(deleteTag(payload))
       await dispatch(setMemory(memoryId))
     }

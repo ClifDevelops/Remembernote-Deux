@@ -31,9 +31,7 @@ router.get(
           },
           attributes: ['id','title', 'dateOfMemory', 'pictureUrl'],
         })
-        // console.log(memory)
         memories.push(memory)
-        // console.log('here are the memories inside the loop', memories)
       }
     }
     await memoryFinder()
