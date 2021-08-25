@@ -22,13 +22,14 @@ const Splash = () => {
     
     return (
         <div className='splash-container'>
+            <img src='https://i.pinimg.com/originals/d6/5e/7e/d65e7e7abf4055a03be418c63485d969.jpg' alt='background' className='splash-background-image' />
             <div>
                 <img className='splash-logo' src={Logo} alt='logo'/>
             </div>
             <div className='splash-text'> Remembernote is a site designed to help you record your life one memory at a time! Tag and date your memories, add pictures if you please, and ultimately have an easily searchable, private journal of your life!</div>
             <div className='splash-links-container'>
-                <NavLink className='splash-links' to='/login'>Login</NavLink>
-                <NavLink className='splash-links' to='/signup'>Signup</NavLink>
+                <div><NavLink className='splash-links' to='/login'>Login</NavLink></div>
+                <div><NavLink className='splash-links' to='/signup'>Signup</NavLink></div>
                 <div><button className='demo-login-button' onClick={demoLogin}>Demo Login</button></div>
             </div>
             

@@ -14,13 +14,13 @@ const MemoryList = (props) => {
     useEffect(() => {
         dispatch(setMemories())
       }, [dispatch])
-    const memories = useSelector(state => state?.memories);
+    const memories = useSelector(state => Object.values(state?.memories));
 
 
     return (
         <div className="memory-list-container">
-          {Object.values(memories)
-          .filter((memory) => {
+          {memories?.length ? (
+          memories.filter((memory) => {
           if (props.searchTerm === "") {
             return memory;
           } else if (
@@ -38,7 +38,9 @@ const MemoryList = (props) => {
             return (
               <MemoryCard key={memory.id} memory={memory} />
             );
-          })}
+          })) : (
+            <div className='memory-list-message'>Click 'Record a memory' on the left to start your Remembernote journey!</div>
+          )}
       </div>
     )
 }

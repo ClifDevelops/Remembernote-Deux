@@ -6,10 +6,12 @@
     background-color:rgba(50, 63, 63, 0.97);
     flex-wrap: wrap;
     height: 100vh;
-    width: 20vw;
+    width: fit-content;
     position: fixed;
     margin-left: 17vw;
     z-index: 1;
+    box-sizing: border-box;
+    padding: 5px;
     /* grid-column: 2; */
     overflow-y: scroll;
     /* background-image: url('../../images/blue-clouds.jpeg');
@@ -35,4 +37,9 @@
 }
 .homepage-tag-button:active {
     background-color: #93b6c4;
+}
+
+.tag-message {
+    font-size: 2.3vh;
+    color: #F2F4F3;
 }

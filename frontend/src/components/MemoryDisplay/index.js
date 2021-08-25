@@ -82,6 +82,7 @@ const MemoryDisplay = ({memoryId, setTagsDisplay}) => {
 
     return (
       <div className="memory-display">
+        <img src='https://i.pinimg.com/originals/d6/5e/7e/d65e7e7abf4055a03be418c63485d969.jpg' alt='background' className='memory-display-background-image' />
         <div className='memory-display-container'>
           <div className="memory-display-title">{memory?.title}</div>
           <div className='memory-details-container'>
@@ -95,6 +96,9 @@ const MemoryDisplay = ({memoryId, setTagsDisplay}) => {
           ) : null}
           <div className="memory-display-body">{ReactHtmlParser(memory?.body)}</div>
         </div>
+
+
+
         <div className='memory-display-navigation'>
           <div className='memory-nav-button-container'>
           <button className="memory-display-button" onClick={editMemory}>
