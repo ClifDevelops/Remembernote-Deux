@@ -2,17 +2,19 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory, NavLink } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
-import {addTag, deleteTag, setMemory} from "../../store/memories"
+import {addTag, deleteTag, setMemory, deleteMemory} from "../../store/memories";
+import {setMemoryCards} from '../../store/mainContent'
 import "./MemoryDisplay.css"
 
 
 
 
-const MemoryDisplay = ({memoryId}) => {
+const MemoryDisplay = ({memoryId, setTagsDisplay}) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
       dispatch(setMemory(memoryId))
+      // setTagsDisplay(false)
     }, [dispatch, memoryId])
 
     const memory = useSelector(state => state?.memories[memoryId]);
@@ -66,7 +68,15 @@ const MemoryDisplay = ({memoryId}) => {
       console.log("string" && "string")
       await dispatch(deleteTag(payload))
       await dispatch(setMemory(memoryId))
+    }
 
+    const handleMemoryDelete = async (e, memoryId) => {
+      e.preventDefault();
+      const payload = {
+        memoryId
+      }
+      await dispatch(deleteMemory(payload))
+      await dispatch(setMemoryCards())
     }
 
     if(!memory) history.push("/homepage")
@@ -88,11 +98,11 @@ const MemoryDisplay = ({memoryId}) => {
         </div>
         <div className='memory-display-navigation'>
           <div className='memory-nav-button-container'>
-          {/* <button className="memory-display-button" onClick={headHome}>
-            Home
-          </button> */}
           <button className="memory-display-button" onClick={editMemory}>
             Edit
+          </button>
+          <button className="memory-display-button red" onClick={(e)=>handleMemoryDelete(e, memoryId)}>
+            Delete memory
           </button>
           <button className='memory-display-button' onClick={() =>toggleForm()}>
             Tag your memory

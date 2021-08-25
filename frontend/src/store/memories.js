@@ -39,7 +39,7 @@ export const setMemory = (id) => async dispatch => {
         throw response;
     }
     const memory = await response.json();
-    console.log(memory)
+    // console.log(memory)
     dispatch(addMemory(memory));
     return memory;
 }
@@ -54,13 +54,13 @@ export const setMemories = () => async dispatch => {
 }
 
 export const setTaggedMemories = (tagId) => async dispatch => {
-    console.log('Here is the tagId', tagId)
+    
     const response = await csrfFetch(`/api/tags/${tagId}`);
     if (!response.ok) {
         throw response;
     }
     const memories = await response.json();
-    console.log(memories)
+    
     dispatch(load(memories))
 }
 
@@ -148,6 +148,20 @@ export const deleteTag = payload => async dispatch => {
         return {}
     }
     
+}
+
+export const deleteMemory = payload => async dispatch =>{
+    console.log('here is the payload', payload)
+    const response = await csrfFetch(`/api/memories/delete`, {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json', 
+        },
+        body: JSON.stringify(payload)
+    })
+    if (response.ok) {
+        return {}
+    }
 }
 
 

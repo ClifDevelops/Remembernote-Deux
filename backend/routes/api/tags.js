@@ -29,7 +29,7 @@ router.get(
           where: {
             id: memoryId
           },
-          attributes: ['id','title', 'dateOfMemory'],
+          attributes: ['id','title', 'dateOfMemory', 'pictureUrl'],
         })
         // console.log(memory)
         memories.push(memory)
@@ -127,7 +127,7 @@ router.post(
         tag = await Tag.findByPk(tagId);
         await tag.destroy();
       }
-      await res.json('Success')
+      return res.json('Success')
     })
   )
 module.exports = router;

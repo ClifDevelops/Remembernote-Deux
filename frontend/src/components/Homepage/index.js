@@ -6,7 +6,7 @@ import Tags from '../Tags';
 import MemoryForm from '../MemoryForm'
 import { setMemories, logoutMemories } from "../../store/memories";
 import { setTags, logoutTags } from '../../store/tags';
-import { setTextEditor, setMemoryCards, setMemoryContent} from '../../store/mainContent'
+import { setTextEditor, setMemoryCards} from '../../store/mainContent'
 import { logoutSession } from '../../store/session';
 import './Homepage.css';
 import MemoryDisplay from '../MemoryDisplay';
@@ -90,8 +90,8 @@ const Homepage = () => {
       mainContent === 'editor' ?(
         <MemoryForm />
       ) : 
-      mainContent === 'content' && memoryId !== 0 ?(
-        <MemoryDisplay memoryId={memoryId}/>
+      mainContent === 'content' && memoryId !== 0 ? (
+        <MemoryDisplay memoryId={memoryId} setTagsDisplay={setTagsDisplay}/>
       ) : null}
       
     </div>

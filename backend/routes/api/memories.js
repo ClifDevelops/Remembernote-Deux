@@ -43,7 +43,7 @@ asyncHandler(async function (req, res) {
   // that are attached to that user's id.
   // const currentUserId = await getCurrentUserId(req);
   const id = parseInt(req.params.id, 10)
-  console.log(id)
+  console.log('here is the memory id on the get route',id)
   const memory = await Memory.findOne({
     where: {
       id: id
@@ -132,8 +132,9 @@ router.post(
     requireAuth,
     validateMemory,
     asyncHandler(async function (req, res) {
-      const {title, dateOfMemory, location, memoryRating, body, userId, memoryId} = req.body;
+      let {title, dateOfMemory, location, memoryRating, body, userId, memoryId} = req.body;
       const parsedId = parseInt(memoryId, 10);
+      userId =  parseInt(userId, 10)
 
       if (req.file){
         const pictureUrl =  await singlePublicFileUpload(req.file);
@@ -147,7 +148,7 @@ router.post(
           body,
           userId
         });
-        res.json(memoryToUpdate);
+        return res.json(memoryToUpdate);
       }
 
       
@@ -160,8 +161,54 @@ router.post(
         body,
         userId
       });
-      res.json(memoryToUpdate);
+      return res.json(memoryToUpdate);
   
+    })
+  )
+
+  router.post(
+    "/delete",
+    requireAuth,
+    asyncHandler(async function (req, res) {
+      let {memoryId} = req.body;
+      console.log('here is what im sending back', req.body)
+      memoryId = parseInt(memoryId, 10)
+      // Find memory and delete it from database.
+      const memory = await Memory.findOne({
+        where: {
+          id: memoryId
+        },
+        // include: [{
+        //   model: Tag,
+        //   through: {attributes:[]}
+        // }]
+      })
+      const memoryTags = await MemoryTag.findAll({
+        where: {
+          memoryId
+        }
+      })
+      if (memoryTags.length === 1){
+        let tagFinder = async () => {
+          for (let i = 0; i < memoryTags.length; i++){
+            let tagId = memoryTags[i].dataValues.tagId;
+            let tag = await Tag.findOne({
+              where: {
+                id: tagId
+              },
+            })
+            await tag.destroy()
+            await memory.destroy()
+          }
+        }
+        await tagFinder()
+      }
+      // console.log('this is the entire memory object',memory)
+      // We also need to find if that memory was associated to any tags which aren't associated
+      // to any other memories, and if so, delete that tag.
+      // console.log('and here is the memoryTag', memoryTag)
+      
+      return res.json('Success')
     })
   )
 
