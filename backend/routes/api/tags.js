@@ -13,12 +13,12 @@ router.get(
   requireAuth,
   asyncHandler(async function (req, res) {
     const {tagId} =  req.params;
+    const currentUserId = await getCurrentUserId(req);
     const memoryTags = await MemoryTag.findAll({
       where: {
         tagId
       }
     })
-    
     
     let memories = []
     
@@ -27,13 +27,14 @@ router.get(
         let memoryId = memoryTags[i].dataValues.memoryId;
         let memory = await Memory.findOne({
           where: {
-            id: memoryId
+            id: memoryId,
+            userId: currentUserId
           },
-          attributes: ['id','title', 'dateOfMemory'],
+          attributes: ['id','title', 'dateOfMemory', 'pictureUrl'],
         })
-        // console.log(memory)
-        memories.push(memory)
-        // console.log('here are the memories inside the loop', memories)
+        if (memory){
+          memories.push(memory)
+        }
       }
     }
     await memoryFinder()
@@ -42,6 +43,8 @@ router.get(
 
   })
 )
+
+
 router.get(
   "/user/:userId",
   requireAuth,
@@ -53,27 +56,25 @@ router.get(
         userId
       }
     })
-    
-
     return res.json(tags)
   })
 )
 
-
-
-
-
+// Needed to refactor this route to allow for duplicate tags across users but no duplicates
+// for the same user. This was because of how I load up the tags on my get route.
 router.post(
     "/",
     requireAuth,
     asyncHandler(async function (req, res) {
       const tagName = req.body.tag
-      const {memoryId, userId} = req.body
-      // const memory = await Memory.findByPk(memoryId)
+      const {memoryId, userId} = req.body 
       
-      // Check if the tag currently exists; no need for duplicates.
+      // Check if the tag currently exists; no need for duplicates by the same user
       const existingTag = await Tag.findOne({
-        where: {tagName: tagName}
+        where: {
+          tagName,
+          userId
+        },
       })
       // If it doesn't exist, let's add an entry to the tags table 
       if (!existingTag){
@@ -102,6 +103,7 @@ router.post(
     })
   )
 
+
 router.post(
     "/delete",
     requireAuth,
@@ -127,13 +129,7 @@ router.post(
         tag = await Tag.findByPk(tagId);
         await tag.destroy();
       }
-      await res.json('Success')
+      return res.json('Success')
     })
   )
-module.exports = router;
-
-
-
-
-
 module.exports = router;

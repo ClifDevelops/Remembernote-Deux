@@ -1,18 +1,18 @@
 .single-memory-container{
-    width: 30%;
-    min-height: 12vh;
-    max-height: 12vh;
+    width: 26%;
+    min-height: 10vh;
+    max-height: 10vh;
     box-sizing: border-box;
     margin: 6px;
-    padding: 5px;
+    padding: 12px;
     display: grid;
     grid-template-rows: 70% 30%;
     grid-template-columns: 70% 30%;
     border-radius: 4px;
     color: #0A0908;
     overflow: hidden;
-    -webkit-box-shadow: 5px 5px 5px 0px #000000, inset 2px 2px 10px 0px #000000, 8px 8px 11px -2px rgba(53,53,53,0); 
-    box-shadow: 5px 5px 5px 0px #000000, inset 2px 2px 10px 0px #000000, 8px 8px 11px -2px rgba(53,53,53,0);
+    -webkit-box-shadow: 2px 2px 2px 0px #000000, inset 2px 2px 2px 0px #000000, 2px 2px 2px -2px rgba(53,53,53,0); 
+    box-shadow: 2px 2px 2px 0px #000000, inset 2px 2px 2px 0px #000000, 2px 2px 2px -2px rgba(53,53,53,0);
 }
 .memory-box-title {
     grid-row: 1;
@@ -26,7 +26,7 @@
     font-size: 14px;
 }
 .memory-box-picture {
-    height: 10vh;
+    height: 8vh;
     /* width: auto; */
     grid-column: 2;
     grid-row-start: 0;

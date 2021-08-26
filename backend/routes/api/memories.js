@@ -43,7 +43,7 @@ asyncHandler(async function (req, res) {
   // that are attached to that user's id.
   // const currentUserId = await getCurrentUserId(req);
   const id = parseInt(req.params.id, 10)
-  console.log(id)
+  
   const memory = await Memory.findOne({
     where: {
       id: id
@@ -53,7 +53,7 @@ asyncHandler(async function (req, res) {
       through: {attributes:[]}
     }],
   })
-  // console.log(memory)
+  
   // Send those memories to be set to the Redux store.
   // return
   return res.json(memory);
@@ -72,13 +72,14 @@ router.get("/",
           userId: currentUserId,
         },
         attributes: ['id','title', 'dateOfMemory', 'pictureUrl'],
-        order:[["dateOfMemory", "desc"]],
+        // order:[["dateOfMemory", "desc"]],
         include: [{
           model: Tag,
           through: {attributes:[]}
-        }]
+        }],
+        limit: 20
       });
-      // console.log(memories)
+      
       // Send those memories to be set to the Redux store.
       // return
       return res.json(memories);
@@ -132,8 +133,9 @@ router.post(
     requireAuth,
     validateMemory,
     asyncHandler(async function (req, res) {
-      const {title, dateOfMemory, location, memoryRating, body, userId, memoryId} = req.body;
+      let {title, dateOfMemory, location, memoryRating, body, userId, memoryId} = req.body;
       const parsedId = parseInt(memoryId, 10);
+      userId =  parseInt(userId, 10)
 
       if (req.file){
         const pictureUrl =  await singlePublicFileUpload(req.file);
@@ -147,7 +149,7 @@ router.post(
           body,
           userId
         });
-        res.json(memoryToUpdate);
+        return res.json(memoryToUpdate);
       }
 
       
@@ -160,8 +162,56 @@ router.post(
         body,
         userId
       });
-      res.json(memoryToUpdate);
+      return res.json(memoryToUpdate);
   
+    })
+  )
+
+  router.post(
+    "/delete",
+    requireAuth,
+    asyncHandler(async function (req, res) {
+      let {memoryId} = req.body;
+      memoryId = parseInt(memoryId, 10)
+      // Find memory and delete it from database.
+      const memory = await Memory.findOne({
+        where: {
+          id: memoryId
+        },
+      })
+      const memoryTags = await MemoryTag.findAll({
+        where: {
+          memoryId
+        }
+      })
+      if (memoryTags.length === 0){
+        await memory.destroy()
+        return res.json('Success')
+      } else if (memoryTags.length){
+        let tagFinder = async () => {
+          for (let i = 0; i < memoryTags.length; i++){
+            let tagId = memoryTags[i].dataValues.tagId;
+            let tag = await Tag.findOne({
+              where: {
+                id: tagId
+              },
+            })
+            let checkOnOtherMemoryTags = await MemoryTag.findAll({
+              where: {
+                tagId
+              },
+            })
+            if (checkOnOtherMemoryTags.length === 1){
+              await tag.destroy()
+            } 
+          }
+          await memory.destroy()
+        }
+        await tagFinder()
+      } 
+      
+      
+      return res.json('Success')
     })
   )
 

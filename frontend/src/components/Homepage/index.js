@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch  } from 'react-redux';
-import { Redirect, NavLink } from "react-router-dom";
+import { Redirect} from "react-router-dom";
 import MemoryList from '../MemoryList';
 import Tags from '../Tags';
 import MemoryForm from '../MemoryForm'
 import { setMemories, logoutMemories } from "../../store/memories";
 import { setTags, logoutTags } from '../../store/tags';
-import { setTextEditor, setMemoryCards, setMemoryContent} from '../../store/mainContent'
+import { setTextEditor, setMemoryCards} from '../../store/mainContent'
 import { logoutSession } from '../../store/session';
 import './Homepage.css';
 import MemoryDisplay from '../MemoryDisplay';
@@ -15,7 +15,6 @@ const Homepage = () => {
   const sessionUser = useSelector((state) => state?.session.user);
   const userId = sessionUser?.id
   const dispatch = useDispatch();
-  // const [form, setForm] = useState(false);
   const [tagsDisplay, setTagsDisplay] = useState(false)
   const [searchTerm, setSearchTerm] = useState("");
   
@@ -41,7 +40,6 @@ const Homepage = () => {
 
   const toggleTags = () => {
     setTagsDisplay(!tagsDisplay)
-    // dispatch(setMemoryCards())
   }
 
   const memoryForm = () => {
@@ -50,7 +48,6 @@ const Homepage = () => {
   }
 
   const showAllMemories = async () => {
-    // await dispatch(setTags(userId));
     dispatch(setMemories())
     dispatch(setMemoryCards())
     setTagsDisplay(false)
@@ -79,6 +76,9 @@ const Homepage = () => {
           <button className='logout-button' onClick={()=>onLogout()}>Logout</button>
         </div>
       </div>
+
+
+      
       {tagsDisplay ? (
         <Tags toggleTags={toggleTags} />
       ) : null}
@@ -90,8 +90,8 @@ const Homepage = () => {
       mainContent === 'editor' ?(
         <MemoryForm />
       ) : 
-      mainContent === 'content' && memoryId !== 0 ?(
-        <MemoryDisplay memoryId={memoryId}/>
+      mainContent === 'content' && memoryId !== 0 ? (
+        <MemoryDisplay memoryId={memoryId} setTagsDisplay={setTagsDisplay}/>
       ) : null}
       
     </div>

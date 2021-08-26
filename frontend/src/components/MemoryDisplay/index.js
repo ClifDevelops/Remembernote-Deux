@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, useHistory, NavLink } from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
-import {addTag, deleteTag, setMemory} from "../../store/memories"
+import {addTag, deleteTag, setMemory, deleteMemory} from "../../store/memories";
+import {setMemoryCards} from '../../store/mainContent'
 import "./MemoryDisplay.css"
 
 
@@ -23,11 +24,6 @@ const MemoryDisplay = ({memoryId}) => {
     const history= useHistory();
     const [tagFormToggle, setTagFormToggle] = useState(false)
     const [tag, setTag] = useState("")
-   
-    
-    const headHome = () => {
-      history.push("/homepage");
-    };
 
     const editMemory = () => {
       history.push(`/memories/${memoryId}/edit/`);
@@ -63,16 +59,24 @@ const MemoryDisplay = ({memoryId}) => {
         tagId,
         memoryId
       }
-      console.log("string" && "string")
       await dispatch(deleteTag(payload))
       await dispatch(setMemory(memoryId))
+    }
 
+    const handleMemoryDelete = async (e, memoryId) => {
+      e.preventDefault();
+      const payload = {
+        memoryId
+      }
+      await dispatch(deleteMemory(payload))
+      await dispatch(setMemoryCards())
     }
 
     if(!memory) history.push("/homepage")
 
     return (
       <div className="memory-display">
+        <img src='https://i.pinimg.com/originals/d6/5e/7e/d65e7e7abf4055a03be418c63485d969.jpg' alt='background' className='memory-display-background-image' />
         <div className='memory-display-container'>
           <div className="memory-display-title">{memory?.title}</div>
           <div className='memory-details-container'>
@@ -86,13 +90,16 @@ const MemoryDisplay = ({memoryId}) => {
           ) : null}
           <div className="memory-display-body">{ReactHtmlParser(memory?.body)}</div>
         </div>
+
+
+
         <div className='memory-display-navigation'>
           <div className='memory-nav-button-container'>
-          {/* <button className="memory-display-button" onClick={headHome}>
-            Home
-          </button> */}
           <button className="memory-display-button" onClick={editMemory}>
             Edit
+          </button>
+          <button className="memory-display-button red" onClick={(e)=>handleMemoryDelete(e, memoryId)}>
+            Delete memory
           </button>
           <button className='memory-display-button' onClick={() =>toggleForm()}>
             Tag your memory

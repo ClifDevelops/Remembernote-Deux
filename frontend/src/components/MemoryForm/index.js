@@ -1,6 +1,5 @@
 import { useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {  useHistory } from "react-router-dom";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import "./MemoryForm.css";
@@ -11,7 +10,6 @@ import { setMemoryCards } from "../../store/mainContent";
 
 const MemoryForm = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
     const userId = useSelector((state) => state.session.user.id);
     
 
@@ -27,14 +25,10 @@ const MemoryForm = () => {
     const updateDateOfMemory = (e) => setDateOfMemory(e.target.value);
     const updateLocation = (e) => setLocation(e.target.value);
     const updateMemoryRating = (e) => setMemoryRating(e.target.value);
-    const updateBody = (e) => setBody(e.target.value);
     const updateFile = (e) => {
       const file = e.target.files[0];
       if (file) setImage(file);
     };
-    // const headHome = () => {
-    //   history.push('/homepage')
-    // }
 
     const handleSubmit = async (e) => {
         e.preventDefault();

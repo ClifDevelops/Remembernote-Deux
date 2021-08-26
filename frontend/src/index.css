@@ -6,5 +6,6 @@ body {
     color: #0A0908 ;
     font-family: 'Nanum Gothic', sans-serif;
     width: 100vw;
-    min-height: 100vh;
+    height: 100vh;
+    
 }

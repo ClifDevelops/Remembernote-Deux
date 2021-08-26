@@ -1,0 +1,26 @@
+.memory-list-container {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+    overflow-y: scroll;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+    height: 100vh;
+    overflow-y: scroll;
+    
+}
+
+.memory-list-message {
+    font-size: 3vh;
+    margin-top: 100px;
+}
+
+.memory-list-background-image {
+    opacity: 0.2;
+    height: 100vh;
+    width: 83vw;
+    z-index: -1;
+    position: absolute;
+}
