@@ -13,8 +13,9 @@ const MemoryList = (props) => {
 
 
     return (
-        <div className="memory-list-container">
+        <div className="memory-list-page">
           <img src='https://i.pinimg.com/originals/d6/5e/7e/d65e7e7abf4055a03be418c63485d969.jpg' alt='background' className='memory-list-background-image' />
+          <div className='memory-list-container'>
           {memories?.length ? (
             // eslint-disable-next-line
           memories.filter((memory) => {
@@ -38,6 +39,7 @@ const MemoryList = (props) => {
           })) : (
             <div className='memory-list-message'>Click 'Record a memory' on the left to start your Remembernote journey!</div>
           )}
+          </div>
       </div>
     )
 }

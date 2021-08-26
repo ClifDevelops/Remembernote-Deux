@@ -1,15 +1,20 @@
-.memory-list-container {
+.memory-list-page {
     grid-column: 2;
     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.memory-list-container {
+    display: flex;
     flex-direction: column;
-    /* flex-wrap: wrap; */
+    flex-wrap: wrap;
     overflow-y: scroll;
     justify-content: flex-start;
     align-items: center;
     box-sizing: border-box;
-    height: 100vh;
+    height: 97vh;
+    width: 60%;
     overflow-y: scroll;
-    
 }
 
 .memory-list-message {
