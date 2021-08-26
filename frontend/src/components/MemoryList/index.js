@@ -1,15 +1,10 @@
-import { useState, useEffect } from 'react';
+import {  useEffect } from 'react';
 import { useSelector, useDispatch  } from 'react-redux';
-import { Redirect, NavLink } from "react-router-dom";
 import MemoryCard from '../MemoryCard';
-import { setMemories, setTaggedMemories, logoutMemories } from "../../store/memories";
-import { setTags, logoutTags } from '../../store/tags';
-import { logoutSession } from '../../store/session';
+import { setMemories} from "../../store/memories";
 import './MemoryList.css';
 
 const MemoryList = (props) => {
-    const sessionUser = useSelector((state) => state?.session.user);
-    const userId = sessionUser?.id
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(setMemories())
@@ -19,7 +14,9 @@ const MemoryList = (props) => {
 
     return (
         <div className="memory-list-container">
+          <img src='https://i.pinimg.com/originals/d6/5e/7e/d65e7e7abf4055a03be418c63485d969.jpg' alt='background' className='memory-list-background-image' />
           {memories?.length ? (
+            // eslint-disable-next-line
           memories.filter((memory) => {
           if (props.searchTerm === "") {
             return memory;

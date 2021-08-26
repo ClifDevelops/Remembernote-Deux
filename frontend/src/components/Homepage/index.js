@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch  } from 'react-redux';
-import { Redirect, NavLink } from "react-router-dom";
+import { Redirect} from "react-router-dom";
 import MemoryList from '../MemoryList';
 import Tags from '../Tags';
 import MemoryForm from '../MemoryForm'
@@ -15,7 +15,6 @@ const Homepage = () => {
   const sessionUser = useSelector((state) => state?.session.user);
   const userId = sessionUser?.id
   const dispatch = useDispatch();
-  // const [form, setForm] = useState(false);
   const [tagsDisplay, setTagsDisplay] = useState(false)
   const [searchTerm, setSearchTerm] = useState("");
   
@@ -41,7 +40,6 @@ const Homepage = () => {
 
   const toggleTags = () => {
     setTagsDisplay(!tagsDisplay)
-    // dispatch(setMemoryCards())
   }
 
   const memoryForm = () => {
@@ -50,7 +48,6 @@ const Homepage = () => {
   }
 
   const showAllMemories = async () => {
-    // await dispatch(setTags(userId));
     dispatch(setMemories())
     dispatch(setMemoryCards())
     setTagsDisplay(false)
@@ -79,6 +76,9 @@ const Homepage = () => {
           <button className='logout-button' onClick={()=>onLogout()}>Logout</button>
         </div>
       </div>
+
+
+      
       {tagsDisplay ? (
         <Tags toggleTags={toggleTags} />
       ) : null}

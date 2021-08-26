@@ -14,13 +14,11 @@ router.get(
   asyncHandler(async function (req, res) {
     const {tagId} =  req.params;
     const currentUserId = await getCurrentUserId(req);
-    console.log('here is the user id', currentUserId)
     const memoryTags = await MemoryTag.findAll({
       where: {
         tagId
       }
     })
-    
     
     let memories = []
     
@@ -45,6 +43,8 @@ router.get(
 
   })
 )
+
+
 router.get(
   "/user/:userId",
   requireAuth,
@@ -56,14 +56,9 @@ router.get(
         userId
       }
     })
-    
-
     return res.json(tags)
   })
 )
-
-
-
 
 // Needed to refactor this route to allow for duplicate tags across users but no duplicates
 // for the same user. This was because of how I load up the tags on my get route.
@@ -72,8 +67,7 @@ router.post(
     requireAuth,
     asyncHandler(async function (req, res) {
       const tagName = req.body.tag
-      const {memoryId, userId} = req.body
-      // const memory = await Memory.findByPk(memoryId)
+      const {memoryId, userId} = req.body 
       
       // Check if the tag currently exists; no need for duplicates by the same user
       const existingTag = await Tag.findOne({
@@ -109,6 +103,7 @@ router.post(
     })
   )
 
+
 router.post(
     "/delete",
     requireAuth,
@@ -137,10 +132,4 @@ router.post(
       return res.json('Success')
     })
   )
-module.exports = router;
-
-
-
-
-
 module.exports = router;

@@ -8,7 +8,9 @@ import * as sessionActions from '../../store/session';
 const Splash = () => {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
+    // eslint-disable-next-line
     const [credential, setCredential] = useState('Demomemories');
+    // eslint-disable-next-line
     const [password, setPassword] = useState('password');
     
     const demoLogin = async () => {

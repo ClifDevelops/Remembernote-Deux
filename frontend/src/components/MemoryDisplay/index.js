@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, useHistory, NavLink } from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
 import {addTag, deleteTag, setMemory, deleteMemory} from "../../store/memories";
 import {setMemoryCards} from '../../store/mainContent'
@@ -9,12 +9,11 @@ import "./MemoryDisplay.css"
 
 
 
-const MemoryDisplay = ({memoryId, setTagsDisplay}) => {
+const MemoryDisplay = ({memoryId}) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
       dispatch(setMemory(memoryId))
-      // setTagsDisplay(false)
     }, [dispatch, memoryId])
 
     const memory = useSelector(state => state?.memories[memoryId]);
@@ -25,11 +24,6 @@ const MemoryDisplay = ({memoryId, setTagsDisplay}) => {
     const history= useHistory();
     const [tagFormToggle, setTagFormToggle] = useState(false)
     const [tag, setTag] = useState("")
-   
-    
-    const headHome = () => {
-      history.push("/homepage");
-    };
 
     const editMemory = () => {
       history.push(`/memories/${memoryId}/edit/`);
