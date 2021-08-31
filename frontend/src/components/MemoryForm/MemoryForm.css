@@ -23,6 +23,8 @@
     margin-top: 4px;
     margin-bottom: 4px;
     text-align: center;
+    border-radius: 10px;
+    border: 1px solid #1FAD39;
 }
 .memory-input:focus {
     outline: 0;
