@@ -69,3 +69,14 @@ router.get("/",
         })
  ```
  * and otherwise my queries seem to work fine. 
+
+
+ # August
+ ### Heroku push
+ - Small notes. 
+ - Remembernote-deux.herokuapp.com
+ - Commands to get everything running:
+ - heroku run npm run sequelize db:migrate
+ - heroku run npm run sequelize db:seed:all
+ - heroku run npm run sequelize db:seed:undo:all
+ - heroku run npm run sequelize db:migrate:undo:all
