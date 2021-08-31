@@ -1,6 +1,6 @@
 # Remembernote
 - An app where a user can record their autobiography one memory at a time. 
-![Remembernote](images/remembernote.png)
+![Remembernote](images/homepage.png)
 
 - Deployed to Heroku: [Remembernote](remembernote-deux.herokuapp.com)
 
