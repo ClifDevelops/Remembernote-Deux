@@ -43,6 +43,7 @@
     overflow-y: scroll;
     color: black;
     outline: 0;
+    border-radius: 10px;
 }
 .ck-editor__editable_inline:focus {
     outline: 0;
