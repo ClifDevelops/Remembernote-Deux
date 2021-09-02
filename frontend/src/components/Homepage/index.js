@@ -75,6 +75,12 @@ const Homepage = () => {
         <div className='logout-button-container'>
           <button className='logout-button' onClick={()=>onLogout()}>Logout</button>
         </div>
+        <div className='homepage-about-container'>
+          <div className='about-text'>Created By:</div>
+          <div className='about-name'>Robert Burroughs</div>
+          <div><a className='about-link' href='https://www.linkedin.com/in/robert-burroughs-436300b7/'>LinkedIn</a></div>
+          <div><a className='about-link' href='https://github.com/ClifDevelops/'>Github</a></div>
+        </div>
       </div>
 
 
