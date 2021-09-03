@@ -42,6 +42,18 @@ export const setMemory = (id) => async dispatch => {
     dispatch(addMemory(memory));
     return memory;
 }
+
+export const setSearchedMemories = (query) => async dispatch => {
+    const response = await csrfFetch(`/api/memories/search/${query}`)
+    if (!response.ok) {
+        throw response;
+    }
+    const memories = await response.json();
+    
+    dispatch(load(memories));
+    return memories;
+}
+
 export const setMemories = () => async dispatch => {
     const response = await csrfFetch(`/api/memories`);
     if (!response.ok) {
