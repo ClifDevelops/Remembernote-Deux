@@ -4,12 +4,13 @@ import { Redirect} from "react-router-dom";
 import MemoryList from '../MemoryList';
 import Tags from '../Tags';
 import MemoryForm from '../MemoryForm'
+import MemoryDisplay from '../MemoryDisplay';
+import Search from '../Search';
 import { setMemories, logoutMemories } from "../../store/memories";
 import { setTags, logoutTags } from '../../store/tags';
-import { setTextEditor, setMemoryCards} from '../../store/mainContent'
+import { setTextEditor, setMemoryCards, setSearchComponent} from '../../store/mainContent'
 import { logoutSession } from '../../store/session';
 import './Homepage.css';
-import MemoryDisplay from '../MemoryDisplay';
 
 const Homepage = () => {
   const sessionUser = useSelector((state) => state?.session.user);
@@ -47,9 +48,14 @@ const Homepage = () => {
     setTagsDisplay(false)
   }
 
-  const showAllMemories = async () => {
+  const showAllMemories = () => {
     dispatch(setMemories())
     dispatch(setMemoryCards())
+    setTagsDisplay(false)
+  }
+
+  const displaySearch = () => {
+    dispatch(setSearchComponent())
     setTagsDisplay(false)
   }
 
@@ -68,9 +74,9 @@ const Homepage = () => {
         />
         <div className="homepage-button-container">
           <div><button className="homepage-button" onClick={showAllMemories}>Show all memories</button></div>
-          <div><button className="homepage-button" onClick={() => memoryForm()}>Record a memory</button></div>
+          <div><button className="homepage-button" onClick={memoryForm}>Record a memory</button></div>
+          <div><button className='homepage-button' onClick={displaySearch} >Search your memories</button></div>
           <div><button className='homepage-button' onClick={toggleTags} >Display tags</button></div>
-        
         </div>
         <div className='logout-button-container'>
           <button className='logout-button' onClick={()=>onLogout()}>Logout</button>
@@ -85,20 +91,27 @@ const Homepage = () => {
 
 
       
-      {tagsDisplay ? (
+      {
+      tagsDisplay ? (
         <Tags toggleTags={toggleTags} />
-      ) : null}
+      ) : null
+      }
 
 
-      {mainContent === 'cards' || mainContent === undefined ? (
-      <MemoryList searchTerm={searchTerm} />
+      {
+      mainContent === 'cards' || mainContent === undefined ? (
+        <MemoryList searchTerm={searchTerm} />
       ) : 
-      mainContent === 'editor' ?(
+      mainContent === 'editor' ? (
         <MemoryForm />
       ) : 
+      mainContent === 'search' ? (
+        <Search />
+      ) :
       mainContent === 'content' && memoryId !== 0 ? (
         <MemoryDisplay memoryId={memoryId} setTagsDisplay={setTagsDisplay}/>
-      ) : null}
+      ) : null
+      }
       
     </div>
   );

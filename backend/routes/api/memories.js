@@ -1,5 +1,6 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
+const { Op } = require("sequelize");
 
 const { setTokenCookie, requireAuth, getCurrentUserId } = require("../../utils/auth");
 const { User, Memory, Tag, MemoryTag } = require("../../db/models");
@@ -39,9 +40,6 @@ const validateMemory = [
 router.get("/:id",
 requireAuth,
 asyncHandler(async function (req, res) {
-  // Here we are going to get the user's id and find all of the memories on the memories table
-  // that are attached to that user's id.
-  // const currentUserId = await getCurrentUserId(req);
   const id = parseInt(req.params.id, 10)
   
   const memory = await Memory.findOne({
@@ -54,9 +52,41 @@ asyncHandler(async function (req, res) {
     }],
   })
   
-  // Send those memories to be set to the Redux store.
-  // return
   return res.json(memory);
+}))
+
+router.get("/search/:query",
+requireAuth,
+asyncHandler(async function (req, res) {
+  
+  const currentUserId = await getCurrentUserId(req);
+  const query = req.params.query;
+  console.log('HERE ARE THE THINGS', currentUserId, query)
+  const memories = await Memory.findAll({
+    where: {
+      [Op.and]: [
+        {userId: currentUserId},
+        {[Op.or]: [
+          {title: {
+          [Op.substring]: query
+          }},
+          {location: {
+          [Op.substring]: query
+          }},
+          {body: {
+          [Op.substring]: query
+          }},
+        ]
+      }]
+    },
+    attributes: ['id','title', 'dateOfMemory', 'pictureUrl'],
+        include: [{
+          model: Tag,
+          through: {attributes:[]}
+        }],
+  })
+  
+  return res.json(memories);
 }))
 
 router.get("/",

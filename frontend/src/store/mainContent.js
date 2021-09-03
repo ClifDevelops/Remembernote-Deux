@@ -2,6 +2,7 @@
 const SET_EDITOR = "editor/SET"
 const SET_CARDS = "cards/SET"
 const SET_CONTENT = "content/SET"
+const SET_SEARCH = "search/SET"
 
 export const setTextEditor = () => {
     return {
@@ -14,6 +15,13 @@ export const setMemoryCards = () => {
         type: SET_CARDS
     }
 }
+
+export const setSearchComponent = () => {
+    return {
+        type: SET_SEARCH
+    }
+}
+
 export const setMemoryContent = (id) => {
     return {
         type: SET_CONTENT,
@@ -33,6 +41,10 @@ const mainContentReducer = (state = initialState, action) => {
             return newState;
         case SET_CARDS:
             newState.setting = 'cards';
+            newState.memoryId = 0;
+            return newState;
+        case SET_SEARCH:
+            newState.setting = 'search';
             newState.memoryId = 0;
             return newState;
         case SET_CONTENT:
